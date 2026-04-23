@@ -1,863 +1,881 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nguyen Luu Tan Sang — Backend Engineer</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap');
-
-  :root {
-    --bg: #0a0e13;
-    --bg2: #111620;
-    --bg3: #1a2030;
-    --border: #1e2d42;
-    --accent: #00d4aa;
-    --accent2: #0ea5e9;
-    --accent-dim: rgba(0, 212, 170, 0.08);
-    --text: #e2e8f0;
-    --muted: #64748b;
-    --muted2: #94a3b8;
-    --mono: 'JetBrains Mono', monospace;
-    --sans: 'Inter', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* ── GRID NOISE BACKGROUND ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,170,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,170,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(10,14,19,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 14px;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-  }
-
-  .nav-logo span { color: var(--muted); }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-  }
-
-  nav ul a {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted2);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    transition: color 0.2s;
-  }
-
-  nav ul a:hover { color: var(--accent); }
-
-  /* ── SECTIONS ── */
-  section {
-    position: relative;
-    z-index: 1;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 6rem 2rem 4rem;
-  }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 2.5rem;
-    position: relative;
-  }
-
-  h2::after {
-    content: '';
-    display: block;
-    width: 48px;
-    height: 2px;
-    background: var(--accent);
-    margin-top: 0.75rem;
-  }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 56px;
-  }
-
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .hero-tag::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  .hero-avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: var(--bg3);
-    border: 2px solid var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--mono);
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-    letter-spacing: -1px;
-  }
-
-  h1 {
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    font-weight: 600;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-  }
-
-  h1 .highlight {
-    color: var(--accent);
-  }
-
-  .hero-role {
-    font-family: var(--mono);
-    font-size: 14px;
-    color: var(--muted2);
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-  }
-
-  .hero-desc {
-    max-width: 560px;
-    color: var(--muted2);
-    font-size: 15px;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
-
-  .hero-links {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    padding: 10px 20px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #0a0e13;
-    font-weight: 700;
-  }
-
-  .btn-primary:hover { background: #00f0c0; transform: translateY(-1px); }
-
-  .btn-ghost {
-    border: 1px solid var(--border);
-    color: var(--muted2);
-  }
-
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* ── ABOUT ── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  .about-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-  }
-
-  .about-card h3 {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-
-  .about-card p {
-    color: var(--muted2);
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .info-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .info-list li {
-    font-size: 14px;
-    color: var(--muted2);
-    display: flex;
-    gap: 8px;
-  }
-
-  .info-list li span:first-child {
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 12px;
-    min-width: 80px;
-  }
-
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .skill-group {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.25rem 1.5rem;
-  }
-
-  .skill-group h3 {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 3px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    color: var(--muted2);
-    letter-spacing: 0.04em;
-    transition: all 0.15s;
-  }
-
-  .tag:hover { border-color: var(--accent); color: var(--accent); }
-
-  .tag.accent { border-color: rgba(0,212,170,0.3); color: var(--accent); background: var(--accent-dim); }
-
-  /* ── EDUCATION ── */
-  .edu-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 8px 8px 0;
-    padding: 1.5rem 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .edu-school {
-    font-weight: 600;
-    font-size: 16px;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-
-  .edu-degree {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.05em;
-  }
-
-  .edu-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .edu-stat {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 6px 12px;
-    font-family: var(--mono);
-    font-size: 12px;
-  }
-
-  .edu-stat .val { color: var(--accent); font-weight: 700; font-size: 15px; }
-  .edu-stat .lbl { color: var(--muted); font-size: 11px; display: block; }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: rgba(0,212,170,0.1);
-    border: 1px solid rgba(0,212,170,0.3);
-    color: var(--accent);
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 3px;
-    letter-spacing: 0.05em;
-  }
-
-  /* ── PROJECTS ── */
-  .project-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.75rem;
-    margin-bottom: 1.25rem;
-    transition: border-color 0.2s, transform 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .project-card:hover { border-color: rgba(0,212,170,0.3); transform: translateX(4px); }
-  .project-card:hover::before { opacity: 1; }
-
-  .project-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .project-title {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .project-link {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    text-decoration: none;
-    border: 1px solid rgba(0,212,170,0.3);
-    padding: 4px 10px;
-    border-radius: 3px;
-    white-space: nowrap;
-    transition: background 0.15s;
-  }
-
-  .project-link:hover { background: var(--accent-dim); }
-
-  .project-challenge {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 1rem;
-    padding: 8px 12px;
-    background: var(--bg3);
-    border-radius: 4px;
-    border-left: 2px solid var(--accent2);
-  }
-
-  .project-challenge strong { color: var(--accent2); }
-
-  .project-points {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 1.25rem;
-    color: var(--muted2);
-    font-size: 14px;
-  }
-
-  .project-points li {
-    padding-left: 1.25rem;
-    position: relative;
-    line-height: 1.6;
-  }
-
-  .project-points li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-size: 12px;
-  }
-
-  .project-points li strong { color: var(--text); font-weight: 500; }
-
-  .project-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-
-  /* ── CONTACT ── */
-  .contact-box {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 3rem;
-    text-align: center;
-  }
-
-  .contact-box p {
-    color: var(--muted2);
-    max-width: 440px;
-    margin: 0 auto 2rem;
-    font-size: 15px;
-  }
-
-  .contact-email {
-    font-family: var(--mono);
-    font-size: 16px;
-    color: var(--accent);
-    text-decoration: none;
-    display: block;
-    margin-bottom: 2rem;
-    letter-spacing: 0.05em;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid var(--border);
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 640px) {
-    nav ul { display: none; }
-    .about-grid { grid-template-columns: 1fr; }
-    .project-header { flex-direction: column; }
-    h1 { font-size: 2rem; }
-    .contact-box { padding: 2rem 1.25rem; }
-  }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nguyen Luu Tan Sang — Backend Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d0f0f;
+      --bg2: #111414;
+      --bg3: #161a1a;
+      --border: #1e2525;
+      --border2: #243030;
+      --green: #4ade80;
+      --green-dim: #22c55e;
+      --green-dark: #16a34a;
+      --green-faint: rgba(74,222,128,0.06);
+      --green-glow: rgba(74,222,128,0.15);
+      --cyan: #67e8f9;
+      --amber: #fbbf24;
+      --red: #f87171;
+      --muted: #4b5563;
+      --muted2: #374151;
+      --text: #d1fae5;
+      --text-dim: #9ca3af;
+      --text-faint: #6b7280;
+      --mono: 'JetBrains Mono', 'Space Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── Scanline overlay ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── Nav ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13,15,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-prompt {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .nav-prompt span { color: var(--text-dim); }
+
+    .nav-links {
+      display: flex;
+      gap: 0;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-faint);
+      text-decoration: none;
+      font-size: 11px;
+      padding: 4px 12px;
+      border: 1px solid transparent;
+      transition: all 0.15s;
+      letter-spacing: 0.04em;
+    }
+    .nav-links a:hover {
+      color: var(--green);
+      border-color: var(--border2);
+      background: var(--green-faint);
+    }
+
+    .nav-badge {
+      font-size: 10px;
+      color: var(--green);
+      border: 1px solid var(--green-dark);
+      padding: 2px 8px;
+      animation: blink-border 2s infinite;
+    }
+    @keyframes blink-border {
+      0%,100% { border-color: var(--green-dark); }
+      50% { border-color: var(--green); }
+    }
+
+    /* ─── Main layout ─── */
+    main { padding-top: 48px; }
+
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    /* ─── Section headers ─── */
+    .sec-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .sec-label::before { content: '// '; color: var(--green-dark); }
+
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    /* ─── Hero ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 48px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .hero-inner { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+    .terminal-window {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+      box-shadow: 0 0 40px rgba(74,222,128,0.04);
+    }
+
+    .terminal-bar {
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ff5f56; }
+    .dot-y { background: #ffbd2e; }
+    .dot-g { background: #27c93f; }
+    .terminal-title { font-size: 11px; color: var(--muted); margin-left: auto; letter-spacing: 0.06em; }
+
+    .terminal-body { padding: 1.4rem 1.6rem; }
+    .terminal-body .line { margin-bottom: 4px; }
+    .terminal-body .prompt { color: var(--green); }
+    .terminal-body .cmd { color: var(--text); }
+    .terminal-body .out { color: var(--text-dim); padding-left: 1.5rem; }
+    .terminal-body .out-g { color: var(--green); padding-left: 1.5rem; }
+    .terminal-body .out-c { color: var(--cyan); padding-left: 1.5rem; }
+    .terminal-body .out-a { color: var(--amber); padding-left: 1.5rem; }
+    .terminal-body .gap { margin-bottom: 12px; }
+    .cursor {
+      display: inline-block;
+      width: 8px; height: 14px;
+      background: var(--green);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 1.1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .hero-title .accent { color: var(--green); }
+
+    .hero-sub {
+      color: var(--text-dim);
+      font-size: 13px;
+      margin-bottom: 2rem;
+      max-width: 540px;
+      line-height: 1.8;
+    }
+
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-block;
+      padding: 8px 20px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--green);
+      color: #000;
+      border: 1px solid var(--green);
+    }
+    .btn-primary:hover { background: var(--green-dim); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-dim);
+      border: 1px solid var(--border2);
+    }
+    .btn-ghost:hover { color: var(--green); border-color: var(--green-dark); background: var(--green-faint); }
+
+    /* ─── About ─── */
+    #about { border-bottom: 1px solid var(--border); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-text p { color: var(--text-dim); margin-bottom: 1rem; line-height: 1.9; font-size: 13px; }
+
+    .info-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 1.4rem;
+    }
+    .info-card .info-row {
+      display: flex;
+      gap: 1rem;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 11.5px;
+    }
+    .info-card .info-row:last-child { border-bottom: none; }
+    .info-card .info-key { color: var(--muted); width: 80px; flex-shrink: 0; }
+    .info-card .info-val { color: var(--text-dim); }
+    .info-card .info-val.green { color: var(--green); }
+
+    /* ─── Skills ─── */
+    #skills { border-bottom: 1px solid var(--border); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+    }
+    .skill-group {
+      background: var(--bg);
+      padding: 1.4rem 1.6rem;
+    }
+    .skill-group h3 {
+      font-size: 11px;
+      color: var(--green);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-tag {
+      display: inline-block;
+      font-size: 11px;
+      color: var(--text-dim);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      margin: 3px 3px 0 0;
+      transition: all 0.15s;
+    }
+    .skill-tag:hover { border-color: var(--green-dark); color: var(--green); background: var(--green-faint); }
+    .skill-tag.hot { border-color: var(--green-dark); color: var(--green); }
+
+    /* ─── Education ─── */
+    #education { border-bottom: 1px solid var(--border); }
+
+    .edu-card {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      padding: 2rem;
+    }
+    .edu-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+    .edu-school { font-size: 15px; font-weight: 700; color: var(--text); }
+    .edu-degree { color: var(--text-dim); font-size: 12px; margin-top: 4px; }
+    .edu-year { font-size: 11px; color: var(--muted); border: 1px solid var(--border2); padding: 4px 10px; }
+
+    .gpa-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .gpa-block {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 1rem 1.4rem;
+      min-width: 130px;
+    }
+    .gpa-num { font-size: 1.8rem; font-weight: 700; color: var(--green); letter-spacing: -0.04em; line-height: 1; }
+    .gpa-label { font-size: 10px; color: var(--muted); margin-top: 4px; letter-spacing: 0.06em; }
+
+    .scholarship-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--amber);
+      border: 1px solid rgba(251,191,36,0.25);
+      padding: 4px 10px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+
+    /* ─── Certifications ─── */
+    #certifications { border-bottom: 1px solid var(--border); padding-top: 0; margin-top: -1px; }
+    #certifications > .sec-wrap { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
+
+    .cert-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      padding: 1.5rem 2rem;
+    }
+    .cert-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .cert-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .cert-sub { font-size: 11px; color: var(--text-dim); }
+    .cert-tags { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+    .cert-tag {
+      font-size: 10px;
+      color: var(--amber);
+      border: 1px solid rgba(251,191,36,0.3);
+      padding: 2px 8px;
+      background: rgba(251,191,36,0.05);
+    }
+    .cert-date { font-size: 11px; color: var(--muted); margin-left: auto; flex-shrink: 0; }
+
+    /* ─── Projects ─── */
+    #projects { border-bottom: 1px solid var(--border); }
+
+    .project-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      margin-bottom: 1.5px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .project-card:hover { border-color: var(--green-dark); }
+
+    .project-header {
+      padding: 1.6rem 2rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .project-emoji { font-size: 1.1rem; margin-right: 8px; }
+    .project-name { font-size: 15px; font-weight: 700; color: var(--text); }
+    .project-desc { font-size: 11px; color: var(--text-faint); margin-top: 4px; }
+    .project-challenge {
+      font-size: 11.5px;
+      color: var(--cyan);
+      margin-top: 8px;
+      padding-left: 12px;
+      border-left: 2px solid var(--cyan);
+    }
+    .project-link {
+      font-size: 11px;
+      color: var(--green);
+      text-decoration: none;
+      border: 1px solid var(--green-dark);
+      padding: 4px 10px;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+    .project-link:hover { background: var(--green-faint); }
+
+    .project-bullets { padding: 1.4rem 2rem; }
+    .project-bullets ul { list-style: none; }
+    .project-bullets li {
+      padding: 5px 0;
+      font-size: 12px;
+      color: var(--text-dim);
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.7;
+    }
+    .project-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--green-dark);
+    }
+    .project-bullets li strong { color: var(--text); font-weight: 600; }
+
+    .metrics-row {
+      display: flex;
+      gap: 1px;
+      background: var(--border);
+      border-top: 1px solid var(--border);
+    }
+    .metric {
+      flex: 1;
+      background: var(--bg3);
+      padding: 12px 16px;
+      text-align: center;
+    }
+    .metric-val { font-size: 1.3rem; font-weight: 700; color: var(--green); letter-spacing: -0.03em; line-height: 1; }
+    .metric-key { font-size: 10px; color: var(--muted); margin-top: 4px; letter-spacing: 0.06em; }
+
+    .project-stack {
+      padding: 10px 2rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg3);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .stack-tag {
+      font-size: 10px;
+      color: var(--text-faint);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      transition: all 0.15s;
+    }
+    .stack-tag:hover { color: var(--green); border-color: var(--green-dark); }
+
+    /* ─── Contact ─── */
+    #contact { border-bottom: 1px solid var(--border); }
+
+    .contact-inner {
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      padding: 3rem;
+      text-align: center;
+    }
+    .contact-inner p { color: var(--text-dim); font-size: 13px; margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.9; }
+    .contact-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── Footer ─── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer span { color: var(--green-dark); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 680px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .metrics-row { flex-wrap: wrap; }
+      .metric { min-width: 50%; }
+      h2 { font-size: 1.3rem; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ─── NAV ─── -->
 <nav>
-  <div class="nav-logo">sang<span>@portfolio</span> ~</div>
-  <ul>
+  <div class="nav-prompt">sang@portfolio <span>~</span></div>
+  <ul class="nav-links">
     <li><a href="#about">about</a></li>
     <li><a href="#skills">skills</a></li>
     <li><a href="#education">education</a></li>
     <li><a href="#projects">projects</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
+  <div class="nav-badge">available for internship</div>
 </nav>
 
-<!-- HERO -->
+<main>
+
+<!-- ─── HERO ─── -->
 <section id="hero">
-  <div class="hero-tag">available for backend roles</div>
-  <div class="hero-avatar">TS</div>
-  <h1>Nguyen Luu<br><span class="highlight">Tan Sang</span></h1>
-  <p class="hero-role">// Backend Engineer · Java · Spring Boot · Distributed Systems</p>
-  <p class="hero-desc">
-    I build production-grade distributed systems — microservice architectures, real-time geospatial engines, and high-concurrency databases. My focus is correctness under load, clean domain boundaries, and systems that actually scale.
-  </p>
-  <div class="hero-links">
-    <a href="#projects" class="btn btn-primary">View Projects →</a>
-    <a href="https://github.com/sangvirgo" target="_blank" class="btn btn-ghost">GitHub ↗</a>
-    <a href="mailto:tansang06092004@gmail.com" class="btn btn-ghost">Contact</a>
+  <div class="hero-inner">
+    <div class="terminal-window">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <div class="terminal-title">bash — sang@portfolio</div>
+      </div>
+      <div class="terminal-body">
+        <div class="line"><span class="prompt">$ </span><span class="cmd">whoami</span></div>
+        <div class="line out-g gap">Nguyen Luu Tan Sang — Backend Engineer</div>
+        <div class="line"><span class="prompt">$ </span><span class="cmd">cat status.json</span></div>
+        <div class="line out">{ "role": "Backend Engineering Intern",</div>
+        <div class="line out">&nbsp;&nbsp;"stack": "Java · Spring Boot · Microservices",</div>
+        <div class="line out">&nbsp;&nbsp;"systems_deployed": 3,</div>
+        <div class="line out">&nbsp;&nbsp;"ci_deployments": "18+",</div>
+        <div class="line out-g">&nbsp;&nbsp;"status": "available_immediately" }</div>
+        <div class="line gap"></div>
+        <div class="line"><span class="prompt">$ </span><span class="cursor"></span></div>
+      </div>
+    </div>
+
+    <div class="hero-title">
+      Nguyen Luu Tan Sang<br/>
+      <span class="accent">// Backend Engineer</span>
+    </div>
+    <div class="hero-sub">
+      I build production-grade distributed systems — microservice architectures,
+      real-time geospatial engines, and high-concurrency databases.
+      My focus is correctness under load, clean domain boundaries, and systems that actually scale.
+    </div>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View Projects →</a>
+      <a href="https://github.com/sangvirgo" target="_blank" class="btn btn-ghost">GitHub ↗</a>
+      <a href="mailto:tansang06092004@gmail.com" class="btn btn-ghost">Contact</a>
+    </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ─── ABOUT ─── -->
 <section id="about">
-  <div class="section-label">01 / about</div>
+  <div class="sec-label">01 / about</div>
   <h2>About Me</h2>
-  <div class="about-grid reveal">
-    <div class="about-card">
-      <h3>Background</h3>
+  <div class="about-grid">
+    <div class="about-text">
       <p>
-        A backend-focused developer from Vietnam, currently finishing my degree at Posts and Telecommunications Institute of Technology (PTIT). I enjoy solving hard concurrency and scalability problems — the kind that break naive implementations under real load.
+        A backend-focused developer from Vietnam, currently finishing my degree at
+        Posts and Telecommunications Institute of Technology (PTIT). I enjoy solving hard
+        concurrency and scalability problems — the kind that break naive implementations under real load.
       </p>
-      <br>
       <p>
-        Outside of backend work, I run Arch Linux (CachyOS) as my daily driver, which keeps me comfortable with system-level tooling and Linux internals. I've also done applied ML research — building a CNN + LSTM network intrusion detection system.
+        Outside of backend work, I run Arch Linux (CachyOS) as my daily driver, which keeps me
+        comfortable with system-level tooling, SSH deployment, and Linux internals. I've also done
+        applied ML work — building a CNN + LSTM network intrusion detection system, and integrating
+        LLM APIs (Google Gemini) into production tooling.
+      </p>
+      <p>
+        All 3 of my systems are deployed to real VPS (DigitalOcean) with automated CI/CD —
+        not just local demos.
       </p>
     </div>
-    <div class="about-card">
-      <h3>Info</h3>
-      <ul class="info-list">
-        <li><span>Location</span><span>Dong Thap, Vietnam</span></li>
-        <li><span>University</span><span>PTIT (2022 – 2027)</span></li>
-        <li><span>GPA</span><span>3.34 / 4.0 cumulative</span></li>
-        <li><span>Last sem</span><span>3.73 / 4.0 (upward)</span></li>
-        <li><span>OS</span><span>Arch Linux (CachyOS)</span></li>
-        <li><span>Focus</span><span>Backend · Distributed Systems</span></li>
-        <li><span>Email</span><span>tansang06092004@gmail.com</span></li>
-      </ul>
+    <div class="info-card">
+      <div class="info-row"><span class="info-key">Location</span><span class="info-val">Ho Chi Minh, Vietnam</span></div>
+      <div class="info-row"><span class="info-key">University</span><span class="info-val">PTIT (2022–2027)</span></div>
+      <div class="info-row"><span class="info-key">GPA</span><span class="info-val green">3.34 / 4.0 cumulative</span></div>
+      <div class="info-row"><span class="info-key">Last sem</span><span class="info-val green">3.73 / 4.0 ↑</span></div>
+      <div class="info-row"><span class="info-key">OS</span><span class="info-val">Arch Linux (CachyOS)</span></div>
+      <div class="info-row"><span class="info-key">Focus</span><span class="info-val">Backend · Distributed Systems</span></div>
+      <div class="info-row"><span class="info-key">Status</span><span class="info-val green">Intern — available now</span></div>
+      <div class="info-row"><span class="info-key">Email</span><span class="info-val">tansang06092004<br/>@gmail.com</span></div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- ─── SKILLS ─── -->
 <section id="skills">
-  <div class="section-label">02 / skills</div>
+  <div class="sec-label">02 / skills</div>
   <h2>Tech Stack</h2>
-  <div class="skills-grid reveal">
+  <div class="skills-grid">
     <div class="skill-group">
       <h3>Languages</h3>
-      <div class="tags">
-        <span class="tag accent">Java</span>
-        <span class="tag">C++</span>
-        <span class="tag">Python</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">Shell Script</span>
-      </div>
+      <span class="skill-tag hot">Java 17/21</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">C++</span>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Shell Script</span>
     </div>
     <div class="skill-group">
       <h3>Backend</h3>
-      <div class="tags">
-        <span class="tag accent">Spring Boot 3</span>
-        <span class="tag accent">Spring Cloud</span>
-        <span class="tag">Netflix Eureka</span>
-        <span class="tag">OpenFeign</span>
-        <span class="tag">Spring Security</span>
-        <span class="tag">Resilience4j</span>
-      </div>
+      <span class="skill-tag hot">Spring Boot 3</span>
+      <span class="skill-tag hot">Spring Cloud</span>
+      <span class="skill-tag">Spring Security</span>
+      <span class="skill-tag">Netflix Eureka</span>
+      <span class="skill-tag">OpenFeign</span>
+      <span class="skill-tag">Resilience4j</span>
     </div>
     <div class="skill-group">
       <h3>Databases</h3>
-      <div class="tags">
-        <span class="tag accent">PostgreSQL + PostGIS</span>
-        <span class="tag accent">MongoDB Replica Set</span>
-        <span class="tag">MySQL 8</span>
-        <span class="tag">Redis</span>
-      </div>
+      <span class="skill-tag hot">PostgreSQL + PostGIS</span>
+      <span class="skill-tag hot">MongoDB Replica Set</span>
+      <span class="skill-tag">MySQL 8</span>
+      <span class="skill-tag">Redis 7</span>
     </div>
     <div class="skill-group">
       <h3>Infrastructure</h3>
-      <div class="tags">
-        <span class="tag accent">Docker Compose</span>
-        <span class="tag">GitHub Actions</span>
-        <span class="tag">DigitalOcean</span>
-        <span class="tag">Cloudflare</span>
-        <span class="tag">Arch Linux</span>
-      </div>
+      <span class="skill-tag hot">Docker Compose</span>
+      <span class="skill-tag hot">GitHub Actions</span>
+      <span class="skill-tag">DigitalOcean</span>
+      <span class="skill-tag">Cloudflare SSL</span>
+      <span class="skill-tag">Arch Linux</span>
     </div>
     <div class="skill-group">
       <h3>Auth & Payments</h3>
-      <div class="tags">
-        <span class="tag">JWT</span>
-        <span class="tag">OAuth2</span>
-        <span class="tag">VNPay</span>
-        <span class="tag">API Key</span>
-      </div>
+      <span class="skill-tag">JWT</span>
+      <span class="skill-tag">OAuth2</span>
+      <span class="skill-tag">OTP Email</span>
+      <span class="skill-tag">VNPay</span>
+      <span class="skill-tag">API Key Auth</span>
     </div>
     <div class="skill-group">
       <h3>Other</h3>
-      <div class="tags">
-        <span class="tag">CNN + LSTM</span>
-        <span class="tag">Next.js</span>
-        <span class="tag">React</span>
-        <span class="tag">Tailwind CSS</span>
-        <span class="tag">Grafana k6</span>
-        <span class="tag">Postman</span>
-      </div>
+      <span class="skill-tag hot">LLM API (Gemini)</span>
+      <span class="skill-tag">Prompt Engineering</span>
+      <span class="skill-tag">Grafana k6</span>
+      <span class="skill-tag">React / Next.js</span>
+      <span class="skill-tag">Swagger/OpenAPI</span>
+      <span class="skill-tag">CNN + LSTM</span>
     </div>
   </div>
 </section>
 
-<!-- EDUCATION -->
+<!-- ─── EDUCATION ─── -->
 <section id="education">
-  <div class="section-label">03 / education</div>
+  <div class="sec-label">03 / education</div>
   <h2>Education</h2>
-  <div class="edu-card reveal">
-    <div class="edu-school">Posts and Telecommunications Institute of Technology (PTIT)</div>
-    <div class="edu-degree">B.Sc. Information Technology &nbsp;·&nbsp; 2022 – 2027</div>
-    <div class="edu-meta">
-      <div class="edu-stat">
-        <span class="val">3.34</span>
-        <span class="lbl">Cumulative GPA / 4.0</span>
+  <div class="edu-card">
+    <div class="edu-header">
+      <div>
+        <div class="edu-school">Posts and Telecommunications Institute of Technology (PTIT)</div>
+        <div class="edu-degree">B.Sc. Information Technology</div>
       </div>
-      <div class="edu-stat">
-        <span class="val">3.73</span>
-        <span class="lbl">Latest Semester GPA</span>
+      <div class="edu-year">2022 – 2027 (Expected May 2027)</div>
+    </div>
+    <div class="gpa-row">
+      <div class="gpa-block">
+        <div class="gpa-num">3.34</div>
+        <div class="gpa-label">Cumulative GPA / 4.0</div>
+      </div>
+      <div class="gpa-block">
+        <div class="gpa-num">3.73</div>
+        <div class="gpa-label">Latest Semester GPA ↑</div>
       </div>
     </div>
-    <div style="display:flex; gap: 8px; flex-wrap: wrap;">
-      <span class="badge">🏆 Scholarship — Semester 1, 2024–2025</span>
-      <span class="badge">🏆 Scholarship — Semester 2, 2024–2025</span>
+    <div>
+      <span class="scholarship-badge">🏆 Scholarship — Semester 1, AY 2024–2025</span>
+      <span class="scholarship-badge">🏆 Scholarship — Semester 2, AY 2024–2025</span>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ─── CERTIFICATIONS ─── -->
+<section id="certifications" style="padding: 3rem 2rem; border-bottom: 1px solid var(--border);">
+  <div class="sec-label">04 / certifications</div>
+  <h2>Certifications</h2>
+  <div class="cert-card">
+    <div class="cert-icon">☁️</div>
+    <div>
+      <div class="cert-title">AWS Cloud Training</div>
+      <div class="cert-sub">AWS Cloud Clubs (PTIT Chapter) · AWS First Cloud Journey</div>
+      <div class="cert-tags">
+        <span class="cert-tag">Networking</span>
+        <span class="cert-tag">Storage</span>
+        <span class="cert-tag">Security</span>
+        <span class="cert-tag">Generative AI</span>
+      </div>
+    </div>
+    <div class="cert-date">Dec 2025</div>
+  </div>
+</section>
+
+<!-- ─── PROJECTS ─── -->
 <section id="projects">
-  <div class="section-label">04 / projects</div>
+  <div class="sec-label">05 / projects</div>
   <h2>Featured Projects</h2>
 
-  <!-- Cinestar -->
-  <div class="project-card reveal">
+  <!-- QuickFood -->
+  <div class="project-card">
     <div class="project-header">
-      <div class="project-title">🎬 Cinestar — Distributed Cinema Booking</div>
-      <a href="https://github.com/cinema-Distributed-database/backend" target="_blank" class="project-link">GitHub ↗</a>
+      <div>
+        <div><span class="project-emoji">🍔</span><span class="project-name">QuickFood — Food Delivery Platform</span></div>
+        <div class="project-desc">Solo Backend Engineer · Jan – Mar 2026</div>
+        <div class="project-challenge">Core challenge: Build a full multi-role delivery ecosystem solo — DB design to containerized deployment</div>
+      </div>
+      <a href="https://github.com/sangvirgo/quickfood" target="_blank" class="project-link">GitHub ↗</a>
     </div>
-    <div class="project-challenge">
-      <strong>Core challenge:</strong> Eliminate double-booking under extreme concurrent load without pessimistic locks
+    <div class="project-bullets">
+      <ul>
+        <li><strong>PostGIS spatial engine</strong> — real-time driver location tracking, distance calculation, delivery radius validation via PostgreSQL + PostGIS extension</li>
+        <li><strong>Pessimistic locking for order acceptance</strong> — <code>@Lock(PESSIMISTIC_WRITE)</code> on ShipmentRepository guarantees exactly-one-driver assignment; O(1) rejection for all competing requests</li>
+        <li><strong>Database-per-Service</strong> — Core owns quickfood_core; Delivery owns quickfood_delivery with PostGIS. No shared schema, no domain leakage</li>
+        <li><strong>Netflix Eureka + Spring Cloud Gateway</strong> — dynamic service discovery, single JWT-verified entry point for all traffic</li>
+        <li><strong>GitHub Actions CI/CD</strong> (Build &amp; Push → Deploy): 5 Docker images with layer caching, rolling restart on DigitalOcean — <strong>18+ zero-touch deployments, 100% pass rate</strong>; E2E test suite (16 steps) covering full lifecycle and race-condition scenarios</li>
+      </ul>
     </div>
-    <ul class="project-points">
-      <li><strong>Atomic concurrency control</strong> — single MongoDB atomic update replaces "Read-Check-Write", eliminating race conditions at DB level with no locking overhead</li>
-      <li><strong>ACID multi-document transactions</strong> — full payment-to-seat-confirmation flow wrapped in one @Transactional; either both commit or everything rolls back — no ghost bookings</li>
-      <li><strong>4-node MongoDB Replica Set</strong> — 1 Primary + 3 Secondaries with automatic leader election; Primary failure recovered in seconds</li>
-      <li><strong>Read/write separation</strong> — ~90% of read traffic routed to Secondary nodes via secondaryPreferred, keeping Primary free for writes</li>
-      <li><strong>Soft-lock expiry sweeper</strong> — @Scheduled job releases HOLDING seats not paid within 5 min, maintaining high seat pool turnover</li>
-      <li><strong>2dsphere geospatial index</strong> — efficient "Nearby Cinema" discovery via MongoDB native geo-indexing</li>
-    </ul>
-    <div class="project-stack tags">
-      <span class="tag accent">Java 21</span>
-      <span class="tag accent">MongoDB Replica Set</span>
-      <span class="tag">Spring Boot 3.3</span>
-      <span class="tag">VNPay</span>
-      <span class="tag">Docker</span>
+    <div class="metrics-row">
+      <div class="metric"><div class="metric-val">18+</div><div class="metric-key">zero-touch deploys</div></div>
+      <div class="metric"><div class="metric-val">100%</div><div class="metric-key">CI pass rate</div></div>
+      <div class="metric"><div class="metric-val">5</div><div class="metric-key">Docker services</div></div>
+      <div class="metric"><div class="metric-val">16</div><div class="metric-key">E2E test steps</div></div>
+    </div>
+    <div class="project-stack">
+      <span class="stack-tag">Java 17</span>
+      <span class="stack-tag">Spring Boot 3</span>
+      <span class="stack-tag">Spring Cloud</span>
+      <span class="stack-tag">Spring Security</span>
+      <span class="stack-tag">PostgreSQL/PostGIS</span>
+      <span class="stack-tag">Docker Compose</span>
+      <span class="stack-tag">GitHub Actions</span>
+      <span class="stack-tag">DigitalOcean</span>
+      <span class="stack-tag">Next.js</span>
     </div>
   </div>
 
   <!-- SmartVN -->
-  <div class="project-card reveal">
+  <div class="project-card">
     <div class="project-header">
-      <div class="project-title">🛒 SmartVN — E-Commerce Microservices Platform</div>
+      <div>
+        <div><span class="project-emoji">🛒</span><span class="project-name">SmartVN — E-Commerce Microservices Platform</span></div>
+        <div class="project-desc">Solo Backend Engineer · Sep – Nov 2025</div>
+        <div class="project-challenge">Core challenge: Handle high product catalog traffic with near-zero latency</div>
+      </div>
       <a href="https://github.com/sangvirgo/microservice-smartVN" target="_blank" class="project-link">GitHub ↗</a>
     </div>
-    <div class="project-challenge">
-      <strong>Core challenge:</strong> Handle high product catalog traffic with near-zero latency · Benchmarked: <strong style="color:var(--accent)">5.5× faster, +26% throughput</strong> with Redis
+    <div class="project-bullets">
+      <ul>
+        <li><strong>Redis cache-aside strategy</strong> — productDetail TTL 10min, categories TTL 1hr, @CacheEvict on write; bypass flag for consistency-critical admin reads</li>
+        <li><strong>OAuth2 + OTP</strong> — Google &amp; GitHub login via Spring Security OAuth2; email OTP for standard registration; service-to-service auth via X-API-KEY, decoupled from user JWT flows</li>
+        <li><strong>Resilience4j circuit breaker</strong> — graceful fallbacks if any downstream service is under pressure</li>
+        <li><strong>REST API contracts</strong> (Swagger/OpenAPI) for two React frontends (storefront + admin); VNPay payment integration; deployed to DigitalOcean with Cloudflare SSL/TLS</li>
+      </ul>
     </div>
-    <ul class="project-points">
-      <li><strong>Redis cache-aside strategy</strong> — productDetail TTL 10min, categories TTL 1hr, @CacheEvict on write; bypass flag for consistency-critical admin reads</li>
-      <li><strong>Internal API Key auth</strong> — service-to-service calls via X-API-KEY header, separated from user JWT flows; no shared auth context</li>
-      <li><strong>OAuth2 + OTP</strong> — Google & GitHub login via Spring Security OAuth2; email OTP for standard registration</li>
-      <li><strong>Resilience4j circuit breaker</strong> — Admin Service degrades gracefully with fallbacks if any downstream service is under pressure</li>
-      <li><strong>AI recommendation pipeline</strong> — user interactions (VIEW=1.0, CART=2.0, PURCHASE=3.0) exported for offline model training</li>
-    </ul>
-    <div style="background: var(--bg3); border-radius: 6px; padding: 12px 16px; margin-bottom: 1.25rem; font-family: var(--mono); font-size: 12px;">
-      <div style="color: var(--muted); margin-bottom: 6px;">k6 load test — 100 VUs</div>
-      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align:center;">
-        <div><div style="color:var(--accent); font-size:15px; font-weight:700;">8.66ms</div><div style="color:var(--muted)">avg resp</div></div>
-        <div><div style="color:var(--accent); font-size:15px; font-weight:700;">19ms</div><div style="color:var(--muted)">p95</div></div>
-        <div><div style="color:var(--accent); font-size:15px; font-weight:700;">248.5/s</div><div style="color:var(--muted)">throughput</div></div>
-        <div><div style="color:var(--accent); font-size:15px; font-weight:700;">0.00%</div><div style="color:var(--muted)">failures</div></div>
+    <div class="metrics-row">
+      <div class="metric"><div class="metric-val">5.5×</div><div class="metric-key">faster avg response</div></div>
+      <div class="metric"><div class="metric-val">8.66ms</div><div class="metric-key">avg resp (cached)</div></div>
+      <div class="metric"><div class="metric-val">19ms</div><div class="metric-key">p95 (cached)</div></div>
+      <div class="metric"><div class="metric-val">0.00%</div><div class="metric-key">failure rate</div></div>
+    </div>
+    <div class="project-stack">
+      <span class="stack-tag">Java 21</span>
+      <span class="stack-tag">Spring Boot 3</span>
+      <span class="stack-tag">Spring Cloud</span>
+      <span class="stack-tag">MySQL 8</span>
+      <span class="stack-tag">Redis 7</span>
+      <span class="stack-tag">Resilience4j</span>
+      <span class="stack-tag">OAuth2</span>
+      <span class="stack-tag">VNPay</span>
+      <span class="stack-tag">Cloudflare</span>
+      <span class="stack-tag">Grafana k6</span>
+    </div>
+  </div>
+
+  <!-- Cinestar -->
+  <div class="project-card">
+    <div class="project-header">
+      <div>
+        <div><span class="project-emoji">🎬</span><span class="project-name">Cinestar — Distributed Cinema Ticketing System</span></div>
+        <div class="project-desc">Solo Backend Engineer · Apr – Jun 2025</div>
+        <div class="project-challenge">Core challenge: Eliminate double-booking under extreme concurrent load without pessimistic locks</div>
+      </div>
+      <a href="https://github.com/cinema-Distributed-database/backend" target="_blank" class="project-link">GitHub ↗</a>
+    </div>
+    <div class="project-bullets">
+      <ul>
+        <li><strong>MongoDB atomic concurrency control</strong> — single findOneAndUpdate replaces "Read-Check-Write", eliminating race conditions at DB level with no locking overhead; zero double-bookings across all concurrent test sessions</li>
+        <li><strong>4-node MongoDB Replica Set</strong> — 1 Primary + 3 Secondaries; automatic leader election; reads routed via secondaryPreferred to free Primary for writes</li>
+        <li><strong>Soft-lock expiry sweeper</strong> — @Scheduled job releases HOLDING seats not paid within 5 min, maintaining high seat pool turnover</li>
+        <li><strong>2dsphere geospatial index</strong> — efficient "Nearby Cinema" discovery via MongoDB native geo-indexing</li>
+      </ul>
+    </div>
+    <div class="project-stack">
+      <span class="stack-tag">Java 21</span>
+      <span class="stack-tag">Spring Boot 3</span>
+      <span class="stack-tag">MongoDB Replica Set</span>
+      <span class="stack-tag">VNPay</span>
+      <span class="stack-tag">Docker</span>
+    </div>
+  </div>
+
+  <!-- AI Study Automation -->
+  <div class="project-card">
+    <div class="project-header">
+      <div>
+        <div><span class="project-emoji">🧠</span><span class="project-name">AI Study Automation — Gemini-Powered Flashcard &amp; TOEIC Toolkit</span></div>
+        <div class="project-desc">Personal Project · Nov 2025</div>
+        <div class="project-challenge">Core challenge: Automate structured vocabulary card generation using LLM API with reliable JSON output</div>
+      </div>
+      <a href="https://github.com/sangvirgo/tool_anki" target="_blank" class="project-link">GitHub ↗</a>
+    </div>
+    <div class="project-bullets">
+      <ul>
+        <li><strong>Google Gemini API integration</strong> — auto-generates structured Anki flashcards (definitions, collocations, synonyms, example sentences) and TOEIC Part 5 grammar analysis</li>
+        <li><strong>Prompt engineering</strong> — engineered templates enforcing consistent JSON-structured outputs from the LLM; handles edge cases and malformed responses gracefully</li>
+        <li><strong>Batch processing</strong> — 50 cards/run with configurable delays, API key pool failover, and error recovery; orchestrates 3 external APIs (Gemini, VoiceRSS, AnkiConnect) client-side</li>
+        <li>Zero backend infrastructure required — fully client-side vanilla JS with no server dependency</li>
+      </ul>
+    </div>
+    <div class="project-stack">
+      <span class="stack-tag">Google Gemini API</span>
+      <span class="stack-tag">Prompt Engineering</span>
+      <span class="stack-tag">AnkiConnect API</span>
+      <span class="stack-tag">VoiceRSS API</span>
+      <span class="stack-tag">Vanilla JavaScript</span>
+      <span class="stack-tag">HTML/CSS</span>
+    </div>
+  </div>
+
+  <!-- CNN+LSTM -->
+  <div class="project-card">
+    <div class="project-header">
+      <div>
+        <div><span class="project-emoji">📡</span><span class="project-name">Network Intrusion Detection — CNN + LSTM</span></div>
+        <div class="project-desc">Research Project</div>
+        <div class="project-challenge">Core challenge: Detect network attacks in real-time using deep learning on sequential traffic data</div>
       </div>
     </div>
-    <div class="project-stack tags">
-      <span class="tag accent">Java 21</span>
-      <span class="tag accent">Redis 7</span>
-      <span class="tag accent">Spring Cloud</span>
-      <span class="tag">MySQL 8</span>
-      <span class="tag">VNPay</span>
-      <span class="tag">Grafana k6</span>
-      <span class="tag">Docker Compose</span>
+    <div class="project-bullets">
+      <ul>
+        <li><strong>Hybrid CNN + LSTM architecture</strong> — CNNs extract local feature patterns from packet-level data; LSTM layers capture temporal dependencies across traffic sequences</li>
+        <li>Detects attack patterns that evolve over time — categories that static rule-based systems miss</li>
+        <li>Applied ML beyond standard web dev: time-series classification, feature engineering on network traffic datasets</li>
+      </ul>
     </div>
-  </div>
-
-  <!-- QuickFood -->
-  <div class="project-card reveal">
-    <div class="project-header">
-      <div class="project-title">🍔 QuickFood — Food Delivery Platform</div>
-      <a href="https://github.com/sangvirgo/quickfood" target="_blank" class="project-link">GitHub ↗</a>
-    </div>
-    <div class="project-challenge">
-      <strong>Core challenge:</strong> Build a full multi-role delivery ecosystem solo — DB design to containerized deployment
-    </div>
-    <ul class="project-points">
-      <li><strong>PostGIS spatial engine</strong> — real-time driver location tracking, distance calculation, delivery radius validation via PostgreSQL + PostGIS extension</li>
-      <li><strong>Pessimistic locking for order acceptance</strong> — when N drivers race to accept the same WAITING order, exactly one wins; all others get safe rejection at DB level</li>
-      <li><strong>Database-per-service</strong> — Core owns quickfood_core; Delivery owns quickfood_delivery with PostGIS. No shared schema, no domain leakage</li>
-      <li><strong>Netflix Eureka + Spring Cloud Gateway</strong> — dynamic service discovery, single JWT-verified entry point for all traffic</li>
-      <li><strong>One-command infra</strong> — docker compose up --build -d brings up all services including both PostGIS DB instances</li>
-    </ul>
-    <div class="project-stack tags">
-      <span class="tag accent">Java 17</span>
-      <span class="tag accent">PostGIS</span>
-      <span class="tag accent">Spring Cloud</span>
-      <span class="tag">PostgreSQL</span>
-      <span class="tag">Next.js</span>
-      <span class="tag">Docker Compose</span>
-    </div>
-  </div>
-
-  <!-- CNN + LSTM -->
-  <div class="project-card reveal">
-    <div class="project-header">
-      <div class="project-title">🧠 Network Intrusion Detection — CNN + LSTM</div>
-    </div>
-    <div class="project-challenge">
-      <strong>Core challenge:</strong> Detect network attacks in real-time using deep learning on sequential traffic data
-    </div>
-    <ul class="project-points">
-      <li><strong>Hybrid CNN + LSTM architecture</strong> — CNNs extract local feature patterns from packet-level data; LSTM layers capture temporal dependencies across traffic sequences</li>
-      <li>Enables detection of attack patterns that evolve over time — categories that static rule-based systems miss</li>
-      <li>Applied ML beyond standard web dev: time-series classification, feature engineering on network traffic datasets</li>
-    </ul>
-    <div class="project-stack tags">
-      <span class="tag accent">Python</span>
-      <span class="tag accent">CNN</span>
-      <span class="tag accent">LSTM</span>
-      <span class="tag">TensorFlow / Keras</span>
+    <div class="project-stack">
+      <span class="stack-tag">Python</span>
+      <span class="stack-tag">CNN</span>
+      <span class="stack-tag">LSTM</span>
+      <span class="stack-tag">TensorFlow / Keras</span>
     </div>
   </div>
 
 </section>
 
-<!-- CONTACT -->
+<!-- ─── CONTACT ─── -->
 <section id="contact">
-  <div class="section-label">05 / contact</div>
+  <div class="sec-label">06 / contact</div>
   <h2>Get In Touch</h2>
-  <div class="contact-box reveal">
+  <div class="contact-inner">
     <p>
-      Open to backend engineering roles — distributed systems, high-concurrency, Java/Spring ecosystem. Feel free to reach out.
+      Open to backend engineering internship roles — distributed systems, high-concurrency, Java/Spring ecosystem.
+      Available for part-time or full-time internship immediately. Feel free to reach out.
     </p>
-    <a href="mailto:tansang06092004@gmail.com" class="contact-email">tansang06092004@gmail.com</a>
     <div class="contact-links">
+      <a href="mailto:tansang06092004@gmail.com" class="btn btn-primary">tansang06092004@gmail.com</a>
       <a href="https://github.com/sangvirgo" target="_blank" class="btn btn-ghost">GitHub ↗</a>
-      <a href="mailto:tansang06092004@gmail.com" class="btn btn-primary">Send Email</a>
+      <a href="https://www.linkedin.com/in/sangvirgo" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
-  <span>// built by Nguyen Luu Tan Sang · 2025</span>
+  // built by <span>Nguyen Luu Tan Sang</span> · 2025–2026
 </footer>
-
-<script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Stagger project cards
-  document.querySelectorAll('.project-card').forEach((card, i) => {
-    card.style.transitionDelay = `${i * 0.08}s`;
-    card.classList.add('reveal');
-    observer.observe(card);
-  });
-</script>
 
 </body>
 </html>
