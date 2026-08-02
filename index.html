@@ -1,863 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nguyen Luu Tan Sang — Backend Engineer</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap');
-
-  :root {
-    --bg: #0a0e13;
-    --bg2: #111620;
-    --bg3: #1a2030;
-    --border: #1e2d42;
-    --accent: #00d4aa;
-    --accent2: #0ea5e9;
-    --accent-dim: rgba(0, 212, 170, 0.08);
-    --text: #e2e8f0;
-    --muted: #64748b;
-    --muted2: #94a3b8;
-    --mono: 'JetBrains Mono', monospace;
-    --sans: 'Inter', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* ── GRID NOISE BACKGROUND ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,170,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,170,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(10,14,19,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 14px;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-  }
-
-  .nav-logo span { color: var(--muted); }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-  }
-
-  nav ul a {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted2);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    transition: color 0.2s;
-  }
-
-  nav ul a:hover { color: var(--accent); }
-
-  /* ── SECTIONS ── */
-  section {
-    position: relative;
-    z-index: 1;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 6rem 2rem 4rem;
-  }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 2.5rem;
-    position: relative;
-  }
-
-  h2::after {
-    content: '';
-    display: block;
-    width: 48px;
-    height: 2px;
-    background: var(--accent);
-    margin-top: 0.75rem;
-  }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 56px;
-  }
-
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .hero-tag::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  .hero-avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: var(--bg3);
-    border: 2px solid var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--mono);
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-    letter-spacing: -1px;
-  }
-
-  h1 {
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    font-weight: 600;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-  }
-
-  h1 .highlight {
-    color: var(--accent);
-  }
-
-  .hero-role {
-    font-family: var(--mono);
-    font-size: 14px;
-    color: var(--muted2);
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.05em;
-  }
-
-  .hero-desc {
-    max-width: 560px;
-    color: var(--muted2);
-    font-size: 15px;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
-
-  .hero-links {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    padding: 10px 20px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #0a0e13;
-    font-weight: 700;
-  }
-
-  .btn-primary:hover { background: #00f0c0; transform: translateY(-1px); }
-
-  .btn-ghost {
-    border: 1px solid var(--border);
-    color: var(--muted2);
-  }
-
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* ── ABOUT ── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  .about-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-  }
-
-  .about-card h3 {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-
-  .about-card p {
-    color: var(--muted2);
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .info-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .info-list li {
-    font-size: 14px;
-    color: var(--muted2);
-    display: flex;
-    gap: 8px;
-  }
-
-  .info-list li span:first-child {
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 12px;
-    min-width: 80px;
-  }
-
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .skill-group {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.25rem 1.5rem;
-  }
-
-  .skill-group h3 {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  .tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 3px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    color: var(--muted2);
-    letter-spacing: 0.04em;
-    transition: all 0.15s;
-  }
-
-  .tag:hover { border-color: var(--accent); color: var(--accent); }
-
-  .tag.accent { border-color: rgba(0,212,170,0.3); color: var(--accent); background: var(--accent-dim); }
-
-  /* ── EDUCATION ── */
-  .edu-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 8px 8px 0;
-    padding: 1.5rem 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .edu-school {
-    font-weight: 600;
-    font-size: 16px;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-
-  .edu-degree {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.05em;
-  }
-
-  .edu-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .edu-stat {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 6px 12px;
-    font-family: var(--mono);
-    font-size: 12px;
-  }
-
-  .edu-stat .val { color: var(--accent); font-weight: 700; font-size: 15px; }
-  .edu-stat .lbl { color: var(--muted); font-size: 11px; display: block; }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: rgba(0,212,170,0.1);
-    border: 1px solid rgba(0,212,170,0.3);
-    color: var(--accent);
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 3px;
-    letter-spacing: 0.05em;
-  }
-
-  /* ── PROJECTS ── */
-  .project-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.75rem;
-    margin-bottom: 1.25rem;
-    transition: border-color 0.2s, transform 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .project-card:hover { border-color: rgba(0,212,170,0.3); transform: translateX(4px); }
-  .project-card:hover::before { opacity: 1; }
-
-  .project-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .project-title {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .project-link {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    text-decoration: none;
-    border: 1px solid rgba(0,212,170,0.3);
-    padding: 4px 10px;
-    border-radius: 3px;
-    white-space: nowrap;
-    transition: background 0.15s;
-  }
-
-  .project-link:hover { background: var(--accent-dim); }
-
-  .project-challenge {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 1rem;
-    padding: 8px 12px;
-    background: var(--bg3);
-    border-radius: 4px;
-    border-left: 2px solid var(--accent2);
-  }
-
-  .project-challenge strong { color: var(--accent2); }
-
-  .project-points {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 1.25rem;
-    color: var(--muted2);
-    font-size: 14px;
-  }
-
-  .project-points li {
-    padding-left: 1.25rem;
-    position: relative;
-    line-height: 1.6;
-  }
-
-  .project-points li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-size: 12px;
-  }
-
-  .project-points li strong { color: var(--text); font-weight: 500; }
-
-  .project-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-
-  /* ── CONTACT ── */
-  .contact-box {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 3rem;
-    text-align: center;
-  }
-
-  .contact-box p {
-    color: var(--muted2);
-    max-width: 440px;
-    margin: 0 auto 2rem;
-    font-size: 15px;
-  }
-
-  .contact-email {
-    font-family: var(--mono);
-    font-size: 16px;
-    color: var(--accent);
-    text-decoration: none;
-    display: block;
-    margin-bottom: 2rem;
-    letter-spacing: 0.05em;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid var(--border);
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 640px) {
-    nav ul { display: none; }
-    .about-grid { grid-template-columns: 1fr; }
-    .project-header { flex-direction: column; }
-    h1 { font-size: 2rem; }
-    .contact-box { padding: 2rem 1.25rem; }
-  }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2eb">
+  <meta name="description" content="Backend-focused Software Engineer and final-year IT student building Java, Spring Boot, Node.js, and TypeScript applications.">
+  <meta property="og:title" content="Nguyen Luu Tan Sang | Software Engineer">
+  <meta property="og:description" content="Backend-focused Software Engineer and final-year IT student building Java, Spring Boot, Node.js, and TypeScript applications.">
+  <meta property="og:type" content="website">
+  <title>Nguyen Luu Tan Sang | Software Engineer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">sang<span>@portfolio</span> ~</div>
-  <ul>
-    <li><a href="#about">about</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#education">education</a></li>
-    <li><a href="#projects">projects</a></li>
-    <li><a href="#contact">contact</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-tag">available for backend roles</div>
-  <div class="hero-avatar">TS</div>
-  <h1>Nguyen Luu<br><span class="highlight">Tan Sang</span></h1>
-  <p class="hero-role">// Backend Engineer · Java · Spring Boot · Distributed Systems</p>
-  <p class="hero-desc">
-    I build production-grade distributed systems — microservice architectures, real-time geospatial engines, and high-concurrency databases. My focus is correctness under load, clean domain boundaries, and systems that actually scale.
-  </p>
-  <div class="hero-links">
-    <a href="#projects" class="btn btn-primary">View Projects →</a>
-    <a href="https://github.com/sangvirgo" target="_blank" class="btn btn-ghost">GitHub ↗</a>
-    <a href="mailto:tansang06092004@gmail.com" class="btn btn-ghost">Contact</a>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label">01 / about</div>
-  <h2>About Me</h2>
-  <div class="about-grid reveal">
-    <div class="about-card">
-      <h3>Background</h3>
-      <p>
-        A backend-focused developer from Vietnam, currently finishing my degree at Posts and Telecommunications Institute of Technology (PTIT). I enjoy solving hard concurrency and scalability problems — the kind that break naive implementations under real load.
-      </p>
-      <br>
-      <p>
-        Outside of backend work, I run Arch Linux (CachyOS) as my daily driver, which keeps me comfortable with system-level tooling and Linux internals. I've also done applied ML research — building a CNN + LSTM network intrusion detection system.
-      </p>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Nguyen Luu Tan Sang home">SANG<span>/</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
+        <span></span><span></span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-    <div class="about-card">
-      <h3>Info</h3>
-      <ul class="info-list">
-        <li><span>Location</span><span>Dong Thap, Vietnam</span></li>
-        <li><span>University</span><span>PTIT (2022 – 2027)</span></li>
-        <li><span>GPA</span><span>3.34 / 4.0 cumulative</span></li>
-        <li><span>Last sem</span><span>3.73 / 4.0 (upward)</span></li>
-        <li><span>OS</span><span>Arch Linux (CachyOS)</span></li>
-        <li><span>Focus</span><span>Backend · Distributed Systems</span></li>
-        <li><span>Email</span><span>tansang06092004@gmail.com</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
+  </header>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label">02 / skills</div>
-  <h2>Tech Stack</h2>
-  <div class="skills-grid reveal">
-    <div class="skill-group">
-      <h3>Languages</h3>
-      <div class="tags">
-        <span class="tag accent">Java</span>
-        <span class="tag">C++</span>
-        <span class="tag">Python</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">Shell Script</span>
+  <main>
+    <section id="home" class="hero section-anchor">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Software Engineer <span class="eyebrow-dot"></span> Backend-focused</p>
+          <h1>Nguyen Luu<br><em>Tan Sang</em></h1>
+          <p class="hero-lede">Java / Spring Boot · Node.js / TypeScript</p>
+          <p class="hero-summary">Final-year Information Technology student and Software Engineer Intern building dependable APIs, data workflows, authorization systems, and containerized applications for public-sector and citizen-facing products.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">View Projects <span aria-hidden="true">↗</span></a>
+            <a class="button button-secondary" href="#experience">View Experience</a>
+            <a class="text-link" href="mailto:tansang06092004@gmail.com">Contact Me <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+        <aside class="hero-note" aria-label="Career focus">
+          <p class="note-label">Current focus</p>
+          <p class="note-title">Building backend systems that make complex workflows feel clear.</p>
+          <div class="note-rule"></div>
+          <dl class="note-details">
+            <div><dt>Based in</dt><dd>Ho Chi Minh City, Vietnam</dd></div>
+            <div><dt>Open to</dt><dd>Backend engineering roles</dd></div>
+            <div><dt>Working across</dt><dd>APIs · Data · Delivery</dd></div>
+          </dl>
+        </aside>
       </div>
-    </div>
-    <div class="skill-group">
-      <h3>Backend</h3>
-      <div class="tags">
-        <span class="tag accent">Spring Boot 3</span>
-        <span class="tag accent">Spring Cloud</span>
-        <span class="tag">Netflix Eureka</span>
-        <span class="tag">OpenFeign</span>
-        <span class="tag">Spring Security</span>
-        <span class="tag">Resilience4j</span>
+      <div class="hero-footer container"><span>01 — Introduction</span><span>Scroll to explore</span></div>
+    </section>
+
+    <section id="experience" class="section section-anchor section-muted">
+      <div class="container narrow">
+        <div class="section-heading"><p class="eyebrow">Experience</p><h2>Where I’m building<br><em>practical depth.</em></h2></div>
+        <article class="experience-card">
+          <div class="experience-top"><div><p class="overline">MyAloha Technology JSC</p><h3>Software Engineer Intern</h3></div><div class="experience-meta"><span>Mar 2026 – Present</span><span>Ho Chi Minh City, Vietnam</span></div></div>
+          <p class="experience-context">Public-sector digital transformation platforms, administrative web systems, and citizen-facing Zalo Mini App experiences.</p>
+          <ul class="clean-list">
+            <li>Analysed business requirements and coordinated with technical leads, product owners, business analysts, QA engineers, and developers to deliver modules and workflow enhancements for public-sector digital platforms.</li>
+            <li>Developed and integrated REST API-backed features across citizen-facing Zalo Mini App experiences and administrative web systems, covering authorization, data-management workflows, file validation, and tenant- or department-scoped business rules.</li>
+            <li>Investigated frontend and backend integration defects and production issues, reviewed existing data flows and source-code behaviour, and delivered focused fixes while supporting verification, documentation, and deployment activities.</li>
+            <li>Improved application reliability and usability through SQL query analysis, API troubleshooting, interface consistency improvements, and cross-functional release support.</li>
+          </ul>
+          <div class="small-tags" aria-label="Supporting technologies"><span>Laravel</span><span>Vue 3</span><span>TypeScript</span><span>REST APIs</span><span>SQL</span><span>Git</span></div>
+        </article>
       </div>
-    </div>
-    <div class="skill-group">
-      <h3>Databases</h3>
-      <div class="tags">
-        <span class="tag accent">PostgreSQL + PostGIS</span>
-        <span class="tag accent">MongoDB Replica Set</span>
-        <span class="tag">MySQL 8</span>
-        <span class="tag">Redis</span>
+    </section>
+
+    <section id="projects" class="section section-anchor">
+      <div class="container">
+        <div class="section-heading projects-heading"><div><p class="eyebrow">Selected work</p><h2>Four projects,<br><em>two backend tracks.</em></h2></div><p class="section-intro">A curated look at the systems, workflows, and engineering decisions I can discuss in an interview.</p></div>
+        <div class="filter-bar" role="group" aria-label="Filter projects by technical track">
+          <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-button" type="button" data-filter="java" aria-pressed="false">Java / Spring Boot</button>
+          <button class="filter-button" type="button" data-filter="node" aria-pressed="false">Node.js / TypeScript</button>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card project-card-featured" data-track="node">
+            <div class="project-visual visual-bidflow"><span class="visual-kicker">01 / real-time commerce</span><span class="visual-mark">BF</span><span class="visual-line"></span></div>
+            <div class="project-content"><div class="project-top"><div><p class="track-label track-node">Node.js / TypeScript</p><h3>BidFlow — Real-Time Auction Marketplace</h3></div><a class="project-repo" href="https://github.com/sangvirgo/BidFlow" target="_blank" rel="noreferrer">Repository <span aria-hidden="true">↗</span></a></div><p>Built a real-time auction marketplace supporting seller moderation, concurrent bidding, payments, orders, and administrative workflows. Implemented atomic bid processing, idempotency, Socket.IO synchronization, anti-sniping, background scheduling, and a fully containerized local environment.</p><ul class="project-highlights"><li>Concurrency-safe, idempotent bidding</li><li>MongoDB transactions + Redis/BullMQ scheduling</li><li>Socket.IO synchronization and Docker delivery</li></ul><div class="project-tags"><span>TypeScript</span><span>Node.js</span><span>MongoDB</span><span>Redis</span><span>React</span><span>Docker</span></div></div>
+          </article>
+          <article class="project-card" data-track="java">
+            <div class="project-visual visual-quickfood"><span class="visual-kicker">02 / delivery workflows</span><span class="visual-mark">QF</span><span class="visual-line"></span></div>
+            <div class="project-content"><div class="project-top"><div><p class="track-label track-java">Java / Spring Boot</p><h3>QuickFood — Food Delivery Platform</h3></div><a class="project-repo" href="https://github.com/sangvirgo/quickfood" target="_blank" rel="noreferrer">Repository <span aria-hidden="true">↗</span></a></div><p>Built an end-to-end food delivery platform covering customer ordering, staff fulfilment, and shipper delivery workflows. Developed Spring Boot APIs, role-aware interfaces, containerized delivery, and CI/CD workflows for repeatable deployment.</p><ul class="project-highlights"><li>Customer, staff, and shipper workflows</li><li>PostgreSQL + PostGIS and order concurrency verification</li><li>Docker and GitHub Actions delivery workflow</li></ul><div class="project-tags"><span>Java</span><span>Spring Boot</span><span>PostgreSQL</span><span>PostGIS</span><span>Next.js</span><span>Docker</span></div></div>
+          </article>
+          <article class="project-card" data-track="node">
+            <div class="project-visual visual-secure"><span class="visual-kicker">03 / team project</span><span class="visual-mark">ST</span><span class="visual-line"></span></div>
+            <div class="project-content"><div class="project-top"><div><p class="track-label track-node">Node.js / TypeScript</p><h3>Secure Task and Document Management Platform</h3></div><span class="project-type">Backend Developer · Team Project</span></div><p>Contributed to a ten-service NestJS microservices platform for task assignment and secure document sharing. Implemented authorization, expiring permissions, document-security workflows, event-driven communication, and tamper-evident auditing.</p><ul class="project-highlights"><li>Hierarchical task authorization and RBAC</li><li>RabbitMQ, Redis, PostgreSQL, and Prisma</li><li>MinIO document storage and audit hash chain</li></ul><div class="project-tags"><span>NestJS</span><span>TypeScript</span><span>RabbitMQ</span><span>Redis</span><span>PostgreSQL</span><span>Docker</span></div></div>
+          </article>
+          <article class="project-card" data-track="java">
+            <div class="project-visual visual-smart"><span class="visual-kicker">04 / commerce systems</span><span class="visual-mark">SV</span><span class="visual-line"></span></div>
+            <div class="project-content"><div class="project-top"><div><p class="track-label track-java">Java / Spring Boot</p><h3>SmartVN — E-Commerce Microservices Platform</h3></div><a class="project-repo" href="https://github.com/sangvirgo/microservice-smartVN" target="_blank" rel="noreferrer">Repository <span aria-hidden="true">↗</span></a></div><p>Built a Spring Boot e-commerce microservices platform covering authentication, products, inventory, orders, payments, and administration. Implemented Redis caching, service discovery, resilient service communication, and secure authentication workflows.</p><ul class="project-highlights"><li>Redis cache-aside for product workflows</li><li>OAuth2, JWT, OTP, and VNPay integrations</li><li>OpenFeign, Eureka, Resilience4j, and Docker</li></ul><div class="project-tags"><span>Java</span><span>Spring Boot</span><span>Redis</span><span>MySQL</span><span>OAuth2</span><span>Docker</span></div></div>
+          </article>
+        </div>
+        <p class="filter-empty" hidden>No projects match this track.</p>
       </div>
-    </div>
-    <div class="skill-group">
-      <h3>Infrastructure</h3>
-      <div class="tags">
-        <span class="tag accent">Docker Compose</span>
-        <span class="tag">GitHub Actions</span>
-        <span class="tag">DigitalOcean</span>
-        <span class="tag">Cloudflare</span>
-        <span class="tag">Arch Linux</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <h3>Auth & Payments</h3>
-      <div class="tags">
-        <span class="tag">JWT</span>
-        <span class="tag">OAuth2</span>
-        <span class="tag">VNPay</span>
-        <span class="tag">API Key</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <h3>Other</h3>
-      <div class="tags">
-        <span class="tag">CNN + LSTM</span>
-        <span class="tag">Next.js</span>
-        <span class="tag">React</span>
-        <span class="tag">Tailwind CSS</span>
-        <span class="tag">Grafana k6</span>
-        <span class="tag">Postman</span>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-label">03 / education</div>
-  <h2>Education</h2>
-  <div class="edu-card reveal">
-    <div class="edu-school">Posts and Telecommunications Institute of Technology (PTIT)</div>
-    <div class="edu-degree">B.Sc. Information Technology &nbsp;·&nbsp; 2022 – 2027</div>
-    <div class="edu-meta">
-      <div class="edu-stat">
-        <span class="val">3.34</span>
-        <span class="lbl">Cumulative GPA / 4.0</span>
-      </div>
-      <div class="edu-stat">
-        <span class="val">3.73</span>
-        <span class="lbl">Latest Semester GPA</span>
-      </div>
-    </div>
-    <div style="display:flex; gap: 8px; flex-wrap: wrap;">
-      <span class="badge">🏆 Scholarship — Semester 1, 2024–2025</span>
-      <span class="badge">🏆 Scholarship — Semester 2, 2024–2025</span>
-    </div>
-  </div>
-</section>
+    <section id="skills" class="section section-muted section-anchor">
+      <div class="container narrow"><div class="section-heading"><p class="eyebrow">Skills</p><h2>A focused toolkit<br><em>with evidence behind it.</em></h2></div><div class="skills-grid">
+        <div class="skill-group"><h3>Backend</h3><p>Java · Spring Boot · Node.js · TypeScript · Express.js · NestJS · REST APIs</p></div>
+        <div class="skill-group"><h3>Data</h3><p>PostgreSQL · MongoDB · Redis · SQL</p></div>
+        <div class="skill-group"><h3>Frontend collaboration</h3><p>React · Vue 3</p></div>
+        <div class="skill-group"><h3>Engineering tools</h3><p>Docker · Git · Linux</p></div>
+      </div><div class="workflow-note"><span>Development workflow</span> Uses Claude Code, OpenAI Codex, and ChatGPT to support repository investigation, implementation planning, debugging, code review, and technical documentation.</div></div>
+    </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-label">04 / projects</div>
-  <h2>Featured Projects</h2>
+    <section id="education" class="section section-anchor"><div class="container narrow"><div class="section-heading"><p class="eyebrow">Education & credentials</p><h2>Grounded in fundamentals,<br><em>still learning in public.</em></h2></div><div class="credentials-grid"><article class="credential-card education-card"><p class="overline">2022 – 2027 · Vietnam</p><h3>Posts and Telecommunications Institute of Technology</h3><p class="credential-degree">Bachelor of Science in Information Technology</p><div class="credential-stats"><div><strong>3.36</strong><span>GPA / 4.00</span></div><div><strong>3</strong><span>Scholarship semesters</span></div></div><p class="credential-note">Scholarships: Semester 1, AY 2024–2025 · Semester 2, AY 2024–2025 · Semester 1, AY 2025–2026</p></article><article class="credential-card toeic-card"><p class="overline">English credential</p><h3>TOEIC Listening & Reading</h3><div class="toeic-score"><strong>810</strong><span>/ 990</span></div><p class="credential-note">ETS</p></article></div></div></section>
 
-  <!-- Cinestar -->
-  <div class="project-card reveal">
-    <div class="project-header">
-      <div class="project-title">🎬 Cinestar — Distributed Cinema Booking</div>
-      <a href="https://github.com/cinema-Distributed-database/backend" target="_blank" class="project-link">GitHub ↗</a>
-    </div>
-    <div class="project-challenge">
-      <strong>Core challenge:</strong> Eliminate double-booking under extreme concurrent load without pessimistic locks
-    </div>
-    <ul class="project-points">
-      <li><strong>Atomic concurrency control</strong> — single MongoDB atomic update replaces "Read-Check-Write", eliminating race conditions at DB level with no locking overhead</li>
-      <li><strong>ACID multi-document transactions</strong> — full payment-to-seat-confirmation flow wrapped in one @Transactional; either both commit or everything rolls back — no ghost bookings</li>
-      <li><strong>4-node MongoDB Replica Set</strong> — 1 Primary + 3 Secondaries with automatic leader election; Primary failure recovered in seconds</li>
-      <li><strong>Read/write separation</strong> — ~90% of read traffic routed to Secondary nodes via secondaryPreferred, keeping Primary free for writes</li>
-      <li><strong>Soft-lock expiry sweeper</strong> — @Scheduled job releases HOLDING seats not paid within 5 min, maintaining high seat pool turnover</li>
-      <li><strong>2dsphere geospatial index</strong> — efficient "Nearby Cinema" discovery via MongoDB native geo-indexing</li>
-    </ul>
-    <div class="project-stack tags">
-      <span class="tag accent">Java 21</span>
-      <span class="tag accent">MongoDB Replica Set</span>
-      <span class="tag">Spring Boot 3.3</span>
-      <span class="tag">VNPay</span>
-      <span class="tag">Docker</span>
-    </div>
-  </div>
+    <section id="contact" class="section section-anchor section-contact"><div class="container narrow contact-layout"><div><p class="eyebrow">Contact</p><h2>Let’s talk about<br><em>good engineering work.</em></h2></div><div><p class="contact-copy">I’m open to conversations about backend engineering opportunities, project collaboration, and the systems behind reliable products.</p><a class="contact-email" href="mailto:tansang06092004@gmail.com">tansang06092004@gmail.com <span aria-hidden="true">↗</span></a><div class="contact-links"><a href="https://github.com/sangvirgo" target="_blank" rel="noreferrer">GitHub ↗</a></div></div></div></section>
+  </main>
 
-  <!-- SmartVN -->
-  <div class="project-card reveal">
-    <div class="project-header">
-      <div class="project-title">🛒 SmartVN — E-Commerce Microservices Platform</div>
-      <a href="https://github.com/sangvirgo/microservice-smartVN" target="_blank" class="project-link">GitHub ↗</a>
-    </div>
-    <div class="project-challenge">
-      <strong>Core challenge:</strong> Handle high product catalog traffic with near-zero latency · Benchmarked: <strong style="color:var(--accent)">5.5× faster, +26% throughput</strong> with Redis
-    </div>
-    <ul class="project-points">
-      <li><strong>Redis cache-aside strategy</strong> — productDetail TTL 10min, categories TTL 1hr, @CacheEvict on write; bypass flag for consistency-critical admin reads</li>
-      <li><strong>Internal API Key auth</strong> — service-to-service calls via X-API-KEY header, separated from user JWT flows; no shared auth context</li>
-      <li><strong>OAuth2 + OTP</strong> — Google & GitHub login via Spring Security OAuth2; email OTP for standard registration</li>
-      <li><strong>Resilience4j circuit breaker</strong> — Admin Service degrades gracefully with fallbacks if any downstream service is under pressure</li>
-      <li><strong>AI recommendation pipeline</strong> — user interactions (VIEW=1.0, CART=2.0, PURCHASE=3.0) exported for offline model training</li>
-    </ul>
-    <div style="background: var(--bg3); border-radius: 6px; padding: 12px 16px; margin-bottom: 1.25rem; font-family: var(--mono); font-size: 12px;">
-      <div style="color: var(--muted); margin-bottom: 6px;">k6 load test — 100 VUs</div>
-      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align:center;">
-        <div><div style="color:var(--accent); font-size:15px; font-weight:700;">8.66ms</div><div style="color:var(--muted)">avg resp</div></div>
-        <div><div style="color:var(--accent); font-size:15px; font-weight:700;">19ms</div><div style="color:var(--muted)">p95</div></div>
-        <div><div style="color:var(--accent); font-size:15px; font-weight:700;">248.5/s</div><div style="color:var(--muted)">throughput</div></div>
-        <div><div style="color:var(--accent); font-size:15px; font-weight:700;">0.00%</div><div style="color:var(--muted)">failures</div></div>
-      </div>
-    </div>
-    <div class="project-stack tags">
-      <span class="tag accent">Java 21</span>
-      <span class="tag accent">Redis 7</span>
-      <span class="tag accent">Spring Cloud</span>
-      <span class="tag">MySQL 8</span>
-      <span class="tag">VNPay</span>
-      <span class="tag">Grafana k6</span>
-      <span class="tag">Docker Compose</span>
-    </div>
-  </div>
-
-  <!-- QuickFood -->
-  <div class="project-card reveal">
-    <div class="project-header">
-      <div class="project-title">🍔 QuickFood — Food Delivery Platform</div>
-      <a href="https://github.com/sangvirgo/quickfood" target="_blank" class="project-link">GitHub ↗</a>
-    </div>
-    <div class="project-challenge">
-      <strong>Core challenge:</strong> Build a full multi-role delivery ecosystem solo — DB design to containerized deployment
-    </div>
-    <ul class="project-points">
-      <li><strong>PostGIS spatial engine</strong> — real-time driver location tracking, distance calculation, delivery radius validation via PostgreSQL + PostGIS extension</li>
-      <li><strong>Pessimistic locking for order acceptance</strong> — when N drivers race to accept the same WAITING order, exactly one wins; all others get safe rejection at DB level</li>
-      <li><strong>Database-per-service</strong> — Core owns quickfood_core; Delivery owns quickfood_delivery with PostGIS. No shared schema, no domain leakage</li>
-      <li><strong>Netflix Eureka + Spring Cloud Gateway</strong> — dynamic service discovery, single JWT-verified entry point for all traffic</li>
-      <li><strong>One-command infra</strong> — docker compose up --build -d brings up all services including both PostGIS DB instances</li>
-    </ul>
-    <div class="project-stack tags">
-      <span class="tag accent">Java 17</span>
-      <span class="tag accent">PostGIS</span>
-      <span class="tag accent">Spring Cloud</span>
-      <span class="tag">PostgreSQL</span>
-      <span class="tag">Next.js</span>
-      <span class="tag">Docker Compose</span>
-    </div>
-  </div>
-
-  <!-- CNN + LSTM -->
-  <div class="project-card reveal">
-    <div class="project-header">
-      <div class="project-title">🧠 Network Intrusion Detection — CNN + LSTM</div>
-    </div>
-    <div class="project-challenge">
-      <strong>Core challenge:</strong> Detect network attacks in real-time using deep learning on sequential traffic data
-    </div>
-    <ul class="project-points">
-      <li><strong>Hybrid CNN + LSTM architecture</strong> — CNNs extract local feature patterns from packet-level data; LSTM layers capture temporal dependencies across traffic sequences</li>
-      <li>Enables detection of attack patterns that evolve over time — categories that static rule-based systems miss</li>
-      <li>Applied ML beyond standard web dev: time-series classification, feature engineering on network traffic datasets</li>
-    </ul>
-    <div class="project-stack tags">
-      <span class="tag accent">Python</span>
-      <span class="tag accent">CNN</span>
-      <span class="tag accent">LSTM</span>
-      <span class="tag">TensorFlow / Keras</span>
-    </div>
-  </div>
-
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-label">05 / contact</div>
-  <h2>Get In Touch</h2>
-  <div class="contact-box reveal">
-    <p>
-      Open to backend engineering roles — distributed systems, high-concurrency, Java/Spring ecosystem. Feel free to reach out.
-    </p>
-    <a href="mailto:tansang06092004@gmail.com" class="contact-email">tansang06092004@gmail.com</a>
-    <div class="contact-links">
-      <a href="https://github.com/sangvirgo" target="_blank" class="btn btn-ghost">GitHub ↗</a>
-      <a href="mailto:tansang06092004@gmail.com" class="btn btn-primary">Send Email</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <span>// built by Nguyen Luu Tan Sang · 2025</span>
-</footer>
-
-<script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Stagger project cards
-  document.querySelectorAll('.project-card').forEach((card, i) => {
-    card.style.transitionDelay = `${i * 0.08}s`;
-    card.classList.add('reveal');
-    observer.observe(card);
-  });
-</script>
-
+  <footer class="site-footer"><div class="container footer-wrap"><span>Nguyen Luu Tan Sang</span><span>© <span id="current-year">2026</span> · Software Engineer</span><a href="mailto:tansang06092004@gmail.com">Email ↗</a></div></footer>
 </body>
 </html>
