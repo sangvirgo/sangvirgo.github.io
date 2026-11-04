@@ -27,6 +27,7 @@
       <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
         <a href="#projects">Work</a>
         <a href="#skills">Stack</a>
+        <a href="#ai">AI</a>
         <a href="#experience">Journey</a>
         <a class="nav-cta" href="#contact">Contact</a>
       </nav>
@@ -41,7 +42,7 @@
           <p class="status"><span class="pulse"></span>Available for new opportunities</p>
           <h1>Hi, I'm<br><span class="grad">Nguyen Luu Tan Sang</span></h1>
           <p class="hero-role">Software Engineer <span class="sep">/</span> Node.js · NestJS · TypeScript<span class="caret"></span></p>
-          <p class="hero-summary">At MyAloha I built <b>50+ modules and features</b> for public-sector platforms — admin workflows, reporting, role-based access and a Zalo Mini App. Since then I've been shipping Node.js APIs, Zalo bot automation and internal tools, with <b>Java/Spring Boot</b> and <b>TypeScript</b> projects of my own. I own work end to end: design, code, tests, deployment.</p>
+          <p class="hero-summary">I turn messy business workflows into <b>reliable backend systems</b>. 50+ modules built for public-sector platforms, Zalo bots that run operational reporting on autopilot, and Java &amp; TypeScript services that stay correct under load — all shipped faster with <b>AI agents</b>, without lowering the bar.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projects">View projects <span aria-hidden="true">→</span></a>
             <a class="btn btn-ghost" href="#contact">Hire me — let's talk</a>
@@ -156,6 +157,8 @@
           <article class="case reveal"><span class="case-ic">🗄️</span><h4>NAS Media Sync</h4><p>Media pipeline with SHA-256 integrity checks and retry/backoff scheduling.</p><div class="metric"><strong>99.9%</strong> sync success</div></article>
           <article class="case reveal"><span class="case-ic">📊</span><h4>Factory Ops Dashboard</h4><p>Configurable workflows and live dashboards on MSSQL for factory operations.</p><div class="metric"><strong>5+</strong> departments</div></article>
           <article class="case reveal"><span class="case-ic">📱</span><h4>Zalo Mini App</h4><p>Citizen-facing public-sector screens, with faster data-heavy views via server-side pagination.</p><div class="metric"><strong>−40%</strong> API requests</div></article>
+          <article class="case reveal"><span class="case-ic">📰</span><h4>Company CMS</h4><p>Content management for company news, services, products and landing-page content — editors publish without touching code.</p><div class="metric"><strong>4</strong> content types, 0 deploys to publish</div></article>
+          <article class="case reveal"><span class="case-ic">🚀</span><h4>Docker &amp; CI/CD Pipeline</h4><p>Containerized environments and GitHub Actions workflows, plus API consolidation and caching/fallback for steadier backends.</p><div class="metric"><strong>1</strong> command to deploy</div></article>
         </div>
       </div>
     </section>
@@ -178,10 +181,43 @@
       </div>
     </section>
 
+    <!-- AI -->
+    <section id="ai" class="section section-anchor">
+      <div class="container">
+        <div class="sec-head reveal"><p class="eyebrow">03 / AI workflow</p><h2>Engineering <span class="grad">with AI,</span> not just using it.</h2><p class="sec-sub">AI agents are part of how I plan, build, debug and review every day. I treat them like a fast junior team — with clear specs, guardrails and verification.</p></div>
+        <div class="ai-grid">
+          <div class="ai-cards">
+            <div class="ai-card reveal"><span class="ai-ic">⌨️</span><div><h4>Claude Code &amp; OpenAI Codex</h4><p>Daily drivers for exploring unfamiliar codebases, planning changes, implementing features and tracking down production bugs.</p></div></div>
+            <div class="ai-card reveal"><span class="ai-ic">🧩</span><div><h4>Custom Agent Skills</h4><p>I write reusable <code>SKILL.md</code> skills that encode my team's conventions — so agents follow the same standards every time.</p></div></div>
+            <div class="ai-card reveal"><span class="ai-ic">🔌</span><div><h4>Model Context Protocol</h4><p>Connecting agents to code graphs, docs and internal tools through MCP so they work with real context, not guesses.</p></div></div>
+            <div class="ai-card reveal"><span class="ai-ic">🛡️</span><div><h4>Verified, never blind</h4><p>Every AI-generated change goes through tests, type checks and my own code review before it ships.</p></div></div>
+          </div>
+          <div class="skillfile reveal" aria-hidden="true">
+            <div class="term-bar"><i></i><i></i><i></i><span>.claude/skills/api-endpoint/SKILL.md</span></div>
+<pre><code><span class="c">---</span>
+<span class="p">name</span>: api-endpoint
+<span class="p">description</span>: <span class="s">Add a REST endpoint
+  following team conventions</span>
+<span class="c">---</span>
+
+<span class="k">##</span> Steps
+<span class="k">1.</span> Validate input with DTOs
+<span class="k">2.</span> Enforce RBAC guard
+<span class="k">3.</span> Make writes idempotent
+<span class="k">4.</span> Add unit + e2e tests
+<span class="k">5.</span> Run lint, types, tests
+
+<span class="c">// plan → build → verify → review</span></code></pre>
+          </div>
+        </div>
+        <ul class="tags big ai-tags reveal"><li>Claude Code</li><li>OpenAI Codex</li><li>AI Agents</li><li>Subagents</li><li>SKILL.md</li><li>MCP</li><li>Prompt &amp; context engineering</li><li>AI code review</li></ul>
+      </div>
+    </section>
+
     <!-- JOURNEY -->
     <section id="experience" class="section section-anchor">
       <div class="container">
-        <div class="sec-head reveal"><p class="eyebrow">03 / Journey</p><h2>The short <span class="grad">story.</span></h2></div>
+        <div class="sec-head reveal"><p class="eyebrow">04 / Journey</p><h2>The short <span class="grad">story.</span></h2></div>
         <div class="journey">
           <div class="step reveal"><span class="date">2022</span><h4>Started IT at PTIT</h4><p>B.Sc. Information Technology · GPA 3.44 · Academic Excellence Scholarship ×3</p></div>
           <div class="step reveal"><span class="date">Mar 2026</span><h4>Intern @ MyAloha</h4><p>Built 50+ modules and features for public-sector platforms, plus a Zalo Mini App.</p></div>
@@ -195,7 +231,7 @@
     <section id="contact" class="section section-anchor">
       <div class="container">
         <div class="cta reveal">
-          <p class="eyebrow">04 / Contact</p>
+          <p class="eyebrow">05 / Contact</p>
           <h2>Let's build something <span class="grad">reliable together.</span></h2>
           <p class="cta-copy">Open to backend engineering roles and collaborations. The fastest way to reach me is email.</p>
           <a class="btn btn-primary btn-lg" href="mailto:tansang.dev@gmail.com">tansang.dev@gmail.com <span aria-hidden="true">↗</span></a>
