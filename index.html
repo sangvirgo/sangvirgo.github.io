@@ -82,7 +82,9 @@
       <div class="container">
         <div class="sec-head reveal"><p class="eyebrow">01 / Selected work</p><h2>Things I've <span class="grad">built &amp; shipped.</span></h2><p class="sec-sub">Projects across Node.js/TypeScript and Java/Spring Boot, plus production tools used every day.</p></div>
 
+        <div class="proj-grid">
         <article class="showcase reveal">
+          <div class="project-glow"></div>
           <div class="show-visual v-bid" aria-hidden="true">
             <div class="mock">
               <div class="mock-top"><i></i><i></i><i></i><span>bidflow.app/auction/2481</span></div>
@@ -94,7 +96,7 @@
             </div>
           </div>
           <div class="show-info">
-            <p class="kicker">Side project · 2026</p>
+            <p class="kicker">Node.js / TypeScript · Jan – Mar 2026</p>
             <h3>BidFlow</h3>
             <p class="show-desc">A real-time auction marketplace where hundreds of people can bid on the same item at the same moment — without ever losing or double-counting a bid.</p>
             <ul class="points">
@@ -107,7 +109,35 @@
           </div>
         </article>
 
-        <article class="showcase flip reveal">
+        <article class="showcase reveal">
+          <div class="project-glow"></div>
+          <div class="show-visual v-smart" aria-hidden="true">
+            <div class="mock mock-wide">
+              <div class="mock-top"><i></i><i></i><i></i><span>smartvn · GET /products — load test</span></div>
+              <div class="mock-body">
+                <div class="bench"><span>No cache</span><div class="barline"><i class="slow"></i></div></div>
+                <div class="bench"><span>Redis cache-aside</span><div class="barline"><i class="fast"></i></div></div>
+                <div class="speed"><span class="num">5.5×</span><small>faster average response</small></div>
+                <ul class="chips-row"><li>auth</li><li>product</li><li>inventory</li><li>order</li><li>payment</li></ul>
+              </div>
+            </div>
+          </div>
+          <div class="show-info">
+            <p class="kicker kicker-java">Java / Spring Boot · Aug – Nov 2025</p>
+            <h3>SmartVN</h3>
+            <p class="show-desc">An e-commerce platform split into independent Spring Boot microservices — built to stay fast and keep working when one service goes down.</p>
+            <ul class="points">
+              <li><b>Secure sign-in</b> with OAuth2, JWT and OTP, plus VNPay payments</li>
+              <li><b>Resilient services</b> via OpenFeign, Eureka discovery and Resilience4j</li>
+              <li><b>5.5× faster</b> responses with Redis cache-aside <small>(local test, 100 users, 0% failures)</small></li>
+            </ul>
+            <ul class="tags"><li>Java</li><li>Spring Boot</li><li>Redis</li><li>MySQL</li><li>OAuth2</li><li>k6</li></ul>
+            <a class="proj-link" href="https://github.com/sangvirgo/microservice-smartVN" target="_blank" rel="noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="showcase reveal">
+          <div class="project-glow"></div>
           <div class="show-visual v-sec" aria-hidden="true">
             <div class="arch">
               <span class="node n-gw">API Gateway</span>
@@ -118,7 +148,7 @@
             </div>
           </div>
           <div class="show-info">
-            <p class="kicker">Team project · 2026</p>
+            <p class="kicker">Node.js / TypeScript · Jun – Aug 2026</p>
             <h3>Secure Task</h3>
             <p class="show-desc">A 10-service NestJS platform for assigning tasks and sharing sensitive documents — where who-can-see-what is enforced everywhere and every action is auditable.</p>
             <ul class="points">
@@ -131,24 +161,33 @@
           </div>
         </article>
 
-        <div class="sub-head reveal"><h3>Java / Spring Boot</h3><p>Backend projects built on the Java stack.</p></div>
-        <div class="jcards">
-          <article class="jcase reveal">
-            <div class="jtop"><span class="case-ic">🛒</span><span class="date">Aug 2025 — Nov 2025</span></div>
-            <h4>SmartVN</h4><p class="proj-sub">E-Commerce Microservices Platform</p>
-            <p>Auth, products, inventory, cart, orders, payments and admin as separate Spring Boot services — with OAuth2, JWT, OTP and VNPay, wired together through OpenFeign, Eureka and Resilience4j.</p>
-            <div class="metric"><strong>5.5×</strong> faster responses with Redis cache-aside <small>(local load test, 100 users, 0% failures)</small></div>
-            <ul class="tags"><li>Java</li><li>Spring Boot</li><li>Redis</li><li>OAuth2</li><li>Eureka</li><li>k6</li></ul>
-            <a class="proj-link" href="https://github.com/sangvirgo/microservice-smartVN" target="_blank" rel="noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
-          </article>
-          <article class="jcase reveal">
-            <div class="jtop"><span class="case-ic">🍜</span><span class="date">Jan 2026 — Mar 2026</span></div>
-            <h4>QuickFood</h4><p class="proj-sub">Food Delivery Platform</p>
-            <p>Customer ordering, staff fulfilment and shipper delivery in one platform: Spring Boot APIs, PostgreSQL + PostGIS, JWT role-based flows, safe concurrent order acceptance and a Next.js frontend.</p>
-            <div class="metric"><strong>20+</strong> automated deployments <small>(5 Docker images, GitHub Actions CI/CD)</small></div>
+        <article class="showcase reveal">
+          <div class="project-glow"></div>
+          <div class="show-visual v-food" aria-hidden="true">
+            <div class="mock">
+              <div class="mock-top"><i></i><i></i><i></i><span>quickfood.app/orders/8841</span></div>
+              <div class="mock-body">
+                <div class="lot"><div class="lot-img food"></div><div><b>Order #8841</b><small>2 items · 3.2 km away</small></div><span class="live ok">ON THE WAY</span></div>
+                <ol class="steps">
+                  <li class="done">Order placed</li><li class="done">Accepted by staff</li><li class="now">Shipper delivering</li><li>Delivered</li>
+                </ol>
+                <div class="map"><i class="pin a"></i><i class="route"></i><i class="pin b"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="show-info">
+            <p class="kicker kicker-java">Java / Spring Boot · Jan – Mar 2026</p>
+            <h3>QuickFood</h3>
+            <p class="show-desc">A food delivery platform connecting customers, restaurant staff and shippers — each with their own workflow, all on one backend.</p>
+            <ul class="points">
+              <li><b>Three role-based flows</b> secured with JWT: customer, staff, shipper</li>
+              <li><b>Safe concurrent orders</b> — two shippers can't accept the same order</li>
+              <li><b>20+ automated deployments</b> via GitHub Actions, 5 Docker images</li>
+            </ul>
             <ul class="tags"><li>Java</li><li>Spring Boot</li><li>PostgreSQL</li><li>PostGIS</li><li>Next.js</li><li>Docker</li></ul>
             <a class="proj-link" href="https://github.com/sangvirgo/quickfood" target="_blank" rel="noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
-          </article>
+          </div>
+        </article>
         </div>
 
         <div class="sub-head reveal"><h3>In production</h3><p>Internal tools and automations running at real companies.</p></div>

@@ -85,7 +85,7 @@
   }
 
   /* spotlight on project cards */
-  document.querySelectorAll('.project').forEach(function (card) {
+  document.querySelectorAll('.project, .showcase').forEach(function (card) {
     card.addEventListener('pointermove', function (e) {
       const r = card.getBoundingClientRect();
       card.style.setProperty('--mx', e.clientX - r.left + 'px');
