@@ -41,7 +41,7 @@
           <p class="status"><span class="pulse"></span>Available for new opportunities</p>
           <h1>Hi, I'm<br><span class="grad">Nguyen Luu Tan Sang</span></h1>
           <p class="hero-role">Software Engineer <span class="sep">/</span> Node.js · NestJS · TypeScript<span class="caret"></span></p>
-          <p class="hero-summary">I started by building <b>Node.js REST APIs</b> and admin modules for public-sector platforms, then grew from <b>15 to 50+ modules and features</b> — dashboards, configurable workflows, Zalo Bot/Mini App integrations and automated reporting. I own work end to end: design, code, tests, deployment — and I debug production so you don't have to.</p>
+          <p class="hero-summary">At MyAloha I built <b>50+ modules and features</b> for public-sector platforms — admin workflows, reporting, role-based access and a Zalo Mini App. Since then I've been shipping Node.js APIs, Zalo bot automation and internal tools, with <b>Java/Spring Boot</b> and <b>TypeScript</b> projects of my own. I own work end to end: design, code, tests, deployment.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projects">View projects <span aria-hidden="true">→</span></a>
             <a class="btn btn-ghost" href="#contact">Hire me — let's talk</a>
@@ -59,7 +59,7 @@
 <span class="k">const</span> <span class="v">sang</span> = {
   <span class="p">role</span>:    <span class="s">"Software Engineer"</span>,
   <span class="p">focus</span>:   [<span class="s">"APIs"</span>, <span class="s">"Data"</span>, <span class="s">"Automation"</span>],
-  <span class="p">stack</span>:   [<span class="s">"Node.js"</span>, <span class="s">"NestJS"</span>, <span class="s">"TypeScript"</span>],
+  <span class="p">stack</span>:   [<span class="s">"Java"</span>, <span class="s">"Node.js"</span>, <span class="s">"TypeScript"</span>],
   <span class="p">db</span>:      [<span class="s">"PostgreSQL"</span>, <span class="s">"MSSQL"</span>, <span class="s">"Redis"</span>],
   <span class="p">ai</span>:      <span class="s">"Claude Code · Codex · MCP"</span>,
   <span class="p">location</span>: <span class="s">"Vietnam"</span>,
@@ -69,7 +69,7 @@
       </div>
 
       <div class="container stats reveal">
-        <div><strong data-count="50" data-suffix="+">50+</strong><span>Modules &amp; features shipped</span></div>
+        <div><strong data-count="50" data-suffix="+">50+</strong><span>Modules &amp; features built at MyAloha</span></div>
         <div><strong data-count="10">10</strong><span>Services in one NestJS platform</span></div>
         <div><strong data-count="2">2</strong><span>Engineering roles</span></div>
         <div><strong data-count="810">810</strong><span>TOEIC score</span></div>
@@ -79,7 +79,7 @@
     <!-- WORK -->
     <section id="projects" class="section section-anchor">
       <div class="container">
-        <div class="sec-head reveal"><p class="eyebrow">01 / Selected work</p><h2>Things I've <span class="grad">built &amp; shipped.</span></h2><p class="sec-sub">A few systems I'm proud of — from side projects to production tools used every day.</p></div>
+        <div class="sec-head reveal"><p class="eyebrow">01 / Selected work</p><h2>Things I've <span class="grad">built &amp; shipped.</span></h2><p class="sec-sub">Projects across Node.js/TypeScript and Java/Spring Boot, plus production tools used every day.</p></div>
 
         <article class="showcase reveal">
           <div class="show-visual v-bid" aria-hidden="true">
@@ -130,6 +130,26 @@
           </div>
         </article>
 
+        <div class="sub-head reveal"><h3>Java / Spring Boot</h3><p>Backend projects built on the Java stack.</p></div>
+        <div class="jcards">
+          <article class="jcase reveal">
+            <div class="jtop"><span class="case-ic">🛒</span><span class="date">Aug 2025 — Nov 2025</span></div>
+            <h4>SmartVN</h4><p class="proj-sub">E-Commerce Microservices Platform</p>
+            <p>Auth, products, inventory, cart, orders, payments and admin as separate Spring Boot services — with OAuth2, JWT, OTP and VNPay, wired together through OpenFeign, Eureka and Resilience4j.</p>
+            <div class="metric"><strong>5.5×</strong> faster responses with Redis cache-aside <small>(local load test, 100 users, 0% failures)</small></div>
+            <ul class="tags"><li>Java</li><li>Spring Boot</li><li>Redis</li><li>OAuth2</li><li>Eureka</li><li>k6</li></ul>
+            <a class="proj-link" href="https://github.com/sangvirgo/microservice-smartVN" target="_blank" rel="noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="jcase reveal">
+            <div class="jtop"><span class="case-ic">🍜</span><span class="date">Jan 2026 — Mar 2026</span></div>
+            <h4>QuickFood</h4><p class="proj-sub">Food Delivery Platform</p>
+            <p>Customer ordering, staff fulfilment and shipper delivery in one platform: Spring Boot APIs, PostgreSQL + PostGIS, JWT role-based flows, safe concurrent order acceptance and a Next.js frontend.</p>
+            <div class="metric"><strong>20+</strong> automated deployments <small>(5 Docker images, GitHub Actions CI/CD)</small></div>
+            <ul class="tags"><li>Java</li><li>Spring Boot</li><li>PostgreSQL</li><li>PostGIS</li><li>Next.js</li><li>Docker</li></ul>
+            <a class="proj-link" href="https://github.com/sangvirgo/quickfood" target="_blank" rel="noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+
         <div class="sub-head reveal"><h3>In production</h3><p>Internal tools and automations running at real companies.</p></div>
         <div class="cases">
           <article class="case reveal"><span class="case-ic">💬</span><h4>Zalo Report Bot</h4><p>Operational reports and alerts pushed automatically to the right people, routed by department.</p><div class="metric"><strong>0</strong> manual reports</div></article>
@@ -146,8 +166,8 @@
         <div class="sec-head reveal"><p class="eyebrow">02 / Toolbox</p><h2>My daily <span class="grad">stack.</span></h2></div>
         <div class="marquee reveal" aria-label="Technologies">
           <div class="track">
-            <span>TypeScript</span><span>Node.js</span><span>NestJS</span><span>React</span><span>PostgreSQL</span><span>MSSQL</span><span>MongoDB</span><span>Redis</span><span>Prisma</span><span>Docker</span><span>GitHub Actions</span><span>RabbitMQ</span>
-            <span>TypeScript</span><span>Node.js</span><span>NestJS</span><span>React</span><span>PostgreSQL</span><span>MSSQL</span><span>MongoDB</span><span>Redis</span><span>Prisma</span><span>Docker</span><span>GitHub Actions</span><span>RabbitMQ</span>
+            <span>Java</span><span>Spring Boot</span><span>TypeScript</span><span>Node.js</span><span>NestJS</span><span>React</span><span>PostgreSQL</span><span>MSSQL</span><span>MongoDB</span><span>Redis</span><span>Prisma</span><span>Docker</span><span>GitHub Actions</span><span>RabbitMQ</span>
+            <span>Java</span><span>Spring Boot</span><span>TypeScript</span><span>Node.js</span><span>NestJS</span><span>React</span><span>PostgreSQL</span><span>MSSQL</span><span>MongoDB</span><span>Redis</span><span>Prisma</span><span>Docker</span><span>GitHub Actions</span><span>RabbitMQ</span>
           </div>
         </div>
         <div class="principles">
@@ -164,8 +184,8 @@
         <div class="sec-head reveal"><p class="eyebrow">03 / Journey</p><h2>The short <span class="grad">story.</span></h2></div>
         <div class="journey">
           <div class="step reveal"><span class="date">2022</span><h4>Started IT at PTIT</h4><p>B.Sc. Information Technology · GPA 3.44 · Academic Excellence Scholarship ×3</p></div>
-          <div class="step reveal"><span class="date">Mar 2026</span><h4>Intern @ MyAloha</h4><p>Built my first 15 modules for public-sector platforms and a Zalo Mini App.</p></div>
-          <div class="step reveal"><span class="date">Aug 2026</span><h4>Software Engineer @ SimhiTech</h4><p>Scaled output from 15 to 50+ modules: Node.js APIs, Zalo automation, Docker/CI and internal ops tools.</p></div>
+          <div class="step reveal"><span class="date">Mar 2026</span><h4>Intern @ MyAloha</h4><p>Built 50+ modules and features for public-sector platforms, plus a Zalo Mini App.</p></div>
+          <div class="step reveal"><span class="date">Aug 2026</span><h4>Software Engineer @ SimhiTech</h4><p>Node.js APIs, Zalo automation, Docker/CI and internal ops tools.</p></div>
           <div class="step now reveal"><span class="date">Now</span><h4>Open to what's next</h4><p>Looking for a backend role where I can keep building reliable systems. TOEIC 810.</p></div>
         </div>
       </div>

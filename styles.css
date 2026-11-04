@@ -315,3 +315,18 @@ h1 { font-size:clamp(2.4rem,5.4vw,4.4rem); max-width:12.5em; }
 h1 { font-size:clamp(2.3rem,5vw,3.9rem); max-width:none; }
 .hero-role { font-size:clamp(.95rem,1.6vw,1.1rem); }
 .hero-role .sep { color:var(--dim); margin:0 6px; }
+
+/* java cards */
+.jcards { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+.jcase { display:flex; flex-direction:column; padding:28px; border:1px solid var(--card-b); border-radius:22px; background:var(--card); transition:.3s; }
+.jcase:hover { transform:translateY(-6px); border-color:rgba(251,146,60,.5); box-shadow:0 24px 60px -28px rgba(251,146,60,.35); }
+.jtop { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+.jtop .case-ic { margin:0; background:rgba(251,146,60,.15); }
+.jcase h4 { font-size:26px; letter-spacing:-.03em; margin:0; }
+.jcase .proj-sub { color:#fb923c; margin:2px 0 14px; }
+.jcase > p:not(.proj-sub) { color:var(--muted); font-size:15px; margin-bottom:18px; }
+.jcase .metric { margin:0 0 18px; padding:14px 0; border-top:1px solid var(--card-b); border-bottom:1px solid var(--card-b); }
+.jcase .metric small { display:block; margin-top:2px; color:var(--dim); font-size:12px; }
+.jcase .tags { margin-bottom:22px; }
+.jcase .proj-link { margin-top:auto; }
+@media (max-width:900px){ .jcards{grid-template-columns:1fr;} }
