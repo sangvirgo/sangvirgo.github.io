@@ -3,122 +3,198 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f2eb">
-  <meta name="description" content="Backend-focused Software Engineer and final-year IT student building Java, Spring Boot, Node.js, and TypeScript applications.">
+  <meta name="theme-color" content="#07080d">
+  <meta name="description" content="Nguyen Luu Tan Sang — Backend-focused Software Engineer building Node.js, NestJS and TypeScript systems, REST APIs and workflow automation.">
   <meta property="og:title" content="Nguyen Luu Tan Sang | Software Engineer">
-  <meta property="og:description" content="Backend-focused Software Engineer and final-year IT student building Java, Spring Boot, Node.js, and TypeScript applications.">
+  <meta property="og:description" content="Backend-focused Software Engineer building Node.js, NestJS and TypeScript systems, REST APIs and workflow automation.">
   <meta property="og:type" content="website">
   <title>Nguyen Luu Tan Sang | Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
+  <div class="bg-glow" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"></div>
+
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="#home" aria-label="Nguyen Luu Tan Sang home">SANG<span>/</span></a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
-        <span></span><span></span>
-      </button>
+      <a class="brand" href="#home" aria-label="Nguyen Luu Tan Sang home"><span class="brand-mark">S</span>sang<b>.dev</b></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><span></span><span></span></button>
       <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-        <a href="#home">Home</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
+        <a href="#projects">Work</a>
+        <a href="#skills">Stack</a>
+        <a href="#experience">Journey</a>
+        <a class="nav-cta" href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
+    <!-- HERO -->
     <section id="home" class="hero section-anchor">
       <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Software Engineer <span class="eyebrow-dot"></span> Backend-focused</p>
-          <h1>Nguyen Luu<br><em>Tan Sang</em></h1>
-          <p class="hero-lede">Java / Spring Boot · Node.js / TypeScript</p>
-          <p class="hero-summary">Final-year Information Technology student and Software Engineer Intern building dependable APIs, data workflows, authorization systems, and containerized applications for public-sector and citizen-facing products.</p>
+        <div class="hero-copy reveal">
+          <p class="status"><span class="pulse"></span>Available for new opportunities</p>
+          <h1>Hi, I'm<br><span class="grad">Nguyen Luu Tan Sang</span></h1>
+          <p class="hero-role">Software Engineer <span class="sep">/</span> Node.js · NestJS · TypeScript<span class="caret"></span></p>
+          <p class="hero-summary">Currently at <b>SimhiTech</b>, shipping Node.js APIs, Zalo automation and internal tools used by real teams every day. I own features end to end — design, code, tests, deployment — and I debug production so you don't have to.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#projects">View Projects <span aria-hidden="true">↗</span></a>
-            <a class="button button-secondary" href="#experience">View Experience</a>
-            <a class="text-link" href="#contact">Contact Me <span aria-hidden="true">→</span></a>
+            <a class="btn btn-primary" href="#projects">View projects <span aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#contact">Hire me — let's talk</a>
+          </div>
+          <div class="socials">
+            <a href="https://github.com/sangvirgo" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://linkedin.com/in/sangvirgo" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="mailto:tansang.dev@gmail.com">Email</a>
           </div>
         </div>
-        <aside class="hero-note" aria-label="Career focus">
-          <p class="note-label">Current focus</p>
-          <p class="note-title">Building backend systems that make complex workflows feel clear.</p>
-          <div class="note-rule"></div>
-          <dl class="note-details">
-            <div><dt>Based in</dt><dd>Ho Chi Minh City, Vietnam</dd></div>
-            <div><dt>Open to</dt><dd>Software Engineer</dd></div>
-            <div><dt>Working across</dt><dd>APIs · Data · Delivery</dd></div>
-          </dl>
-        </aside>
-      </div>
-      <div class="hero-footer container"><span>01 — Introduction</span><span>Scroll to explore</span></div>
-    </section>
 
-    <section id="experience" class="section section-anchor section-muted">
-      <div class="container narrow">
-        <div class="section-heading"><p class="eyebrow">Experience</p><h2>Where I’m building<br><em>practical depth.</em></h2></div>
-        <article class="experience-card">
-          <div class="experience-top"><div><p class="overline">MyAloha Technology JSC</p><h3>Software Engineer Intern</h3></div><div class="experience-meta"><span>Mar 2026 – Present</span><span>Ho Chi Minh City, Vietnam</span></div></div>
-          <p class="experience-context">Public-sector digital transformation platforms, administrative web systems, and citizen-facing Zalo Mini App experiences.</p>
-          <ul class="clean-list">
-            <li>Analysed business requirements and coordinated with technical leads, product owners, business analysts, QA engineers, and developers to deliver modules and workflow enhancements for public-sector digital platforms.</li>
-            <li>Developed and integrated REST API-backed features across citizen-facing Zalo Mini App experiences and administrative web systems, covering authorization, data-management workflows, file validation, and tenant- or department-scoped business rules.</li>
-            <li>Investigated frontend and backend integration defects and production issues, reviewed existing data flows and source-code behaviour, and delivered focused fixes while supporting verification, documentation, and deployment activities.</li>
-            <li>Improved application reliability and usability through SQL query analysis, API troubleshooting, interface consistency improvements, and cross-functional release support.</li>
-          </ul>
-          <div class="small-tags" aria-label="Supporting technologies"><span>Laravel</span><span>Vue 3</span><span>TypeScript</span><span>REST APIs</span><span>SQL</span><span>Git</span></div>
-        </article>
+        <div class="terminal reveal" aria-label="Quick profile">
+          <div class="term-bar"><i></i><i></i><i></i><span>sang@portfolio ~ profile.ts</span></div>
+          <pre><code><span class="c">// who am i</span>
+<span class="k">const</span> <span class="v">sang</span> = {
+  <span class="p">role</span>:    <span class="s">"Software Engineer"</span>,
+  <span class="p">focus</span>:   [<span class="s">"APIs"</span>, <span class="s">"Data"</span>, <span class="s">"Automation"</span>],
+  <span class="p">stack</span>:   [<span class="s">"Node.js"</span>, <span class="s">"NestJS"</span>, <span class="s">"TypeScript"</span>],
+  <span class="p">db</span>:      [<span class="s">"PostgreSQL"</span>, <span class="s">"MSSQL"</span>, <span class="s">"Redis"</span>],
+  <span class="p">ai</span>:      <span class="s">"Claude Code · Codex · MCP"</span>,
+  <span class="p">location</span>: <span class="s">"Vietnam"</span>,
+  <span class="p">openToWork</span>: <span class="b">true</span>,
+};</code></pre>
+        </div>
+      </div>
+
+      <div class="container stats reveal">
+        <div><strong data-count="15" data-suffix="+">15+</strong><span>Features &amp; modules shipped</span></div>
+        <div><strong data-count="10">10</strong><span>Services in one NestJS platform</span></div>
+        <div><strong data-count="2">2</strong><span>Engineering roles</span></div>
+        <div><strong data-count="810">810</strong><span>TOEIC score</span></div>
       </div>
     </section>
 
+    <!-- WORK -->
     <section id="projects" class="section section-anchor">
       <div class="container">
-        <div class="section-heading projects-heading"><div><p class="eyebrow">Selected work</p><h2>Four projects,<br><em>two backend tracks.</em></h2></div><p class="section-intro">A curated look at the systems, workflows, and engineering decisions I can discuss in an interview.</p></div>
-        <div class="filter-bar" role="group" aria-label="Filter projects by technical track">
-          <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
-          <button class="filter-button" type="button" data-filter="java" aria-pressed="false">Java / Spring Boot</button>
-          <button class="filter-button" type="button" data-filter="node" aria-pressed="false">Node.js / TypeScript</button>
+        <div class="sec-head reveal"><p class="eyebrow">01 / Selected work</p><h2>Things I've <span class="grad">built &amp; shipped.</span></h2><p class="sec-sub">A few systems I'm proud of — from side projects to production tools used every day.</p></div>
+
+        <article class="showcase reveal">
+          <div class="show-visual v-bid" aria-hidden="true">
+            <div class="mock">
+              <div class="mock-top"><i></i><i></i><i></i><span>bidflow.app/auction/2481</span></div>
+              <div class="mock-body">
+                <div class="lot"><div class="lot-img"></div><div><b>Vintage Leica M3</b><small>Ends in <em class="tick">00:42</em></small></div><span class="live">LIVE</span></div>
+                <div class="price">$ <span class="num" data-bid>1,280</span></div>
+                <ul class="feed"><li><i>●</i> minh_t bid <b>$1,280</b></li><li><i>●</i> anna_k bid <b>$1,240</b></li><li><i>●</i> d.nguyen bid <b>$1,200</b></li></ul>
+              </div>
+            </div>
+          </div>
+          <div class="show-info">
+            <p class="kicker">Side project · 2026</p>
+            <h3>BidFlow</h3>
+            <p class="show-desc">A real-time auction marketplace where hundreds of people can bid on the same item at the same moment — without ever losing or double-counting a bid.</p>
+            <ul class="points">
+              <li><b>Race-proof bidding</b> with atomic updates, transactions and idempotency keys</li>
+              <li><b>Live everything</b> — Socket.IO updates, anti-sniping time extension, notifications</li>
+              <li><b>Trustworthy payments</b> via signed webhooks and BullMQ background jobs</li>
+            </ul>
+            <ul class="tags"><li>TypeScript</li><li>Node.js</li><li>React</li><li>MongoDB</li><li>Redis</li><li>Socket.IO</li></ul>
+            <a class="proj-link" href="https://github.com/sangvirgo/BidFlow" target="_blank" rel="noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="showcase flip reveal">
+          <div class="show-visual v-sec" aria-hidden="true">
+            <div class="arch">
+              <span class="node n-gw">API Gateway</span>
+              <span class="node n1">Auth</span><span class="node n2">Tasks</span><span class="node n3">Documents</span>
+              <span class="node n4">Audit</span><span class="node n5">Notify</span><span class="node n6">Grants</span>
+              <span class="node n-bus">RabbitMQ · Redis</span>
+              <span class="node n-db">PostgreSQL</span><span class="node n-s3">MinIO</span>
+            </div>
+          </div>
+          <div class="show-info">
+            <p class="kicker">Team project · 2026</p>
+            <h3>Secure Task</h3>
+            <p class="show-desc">A 10-service NestJS platform for assigning tasks and sharing sensitive documents — where who-can-see-what is enforced everywhere and every action is auditable.</p>
+            <ul class="points">
+              <li><b>Hierarchical RBAC</b> with grants that expire on their own</li>
+              <li><b>Time-limited download tickets</b> and full audit logs</li>
+              <li><b>Docker-backed E2E tests</b> and CI on an AWS EC2 environment</li>
+            </ul>
+            <ul class="tags"><li>NestJS</li><li>PostgreSQL</li><li>Prisma</li><li>RabbitMQ</li><li>MinIO</li><li>Docker</li></ul>
+            <a class="proj-link" href="https://github.com/sangvirgo/task-doc-microservices" target="_blank" rel="noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <div class="sub-head reveal"><h3>In production</h3><p>Internal tools and automations running at real companies.</p></div>
+        <div class="cases">
+          <article class="case reveal"><span class="case-ic">💬</span><h4>Zalo Report Bot</h4><p>Operational reports and alerts pushed automatically to the right people, routed by department.</p><div class="metric"><strong>0</strong> manual reports</div></article>
+          <article class="case reveal"><span class="case-ic">🗄️</span><h4>NAS Media Sync</h4><p>Media pipeline with SHA-256 integrity checks and retry/backoff scheduling.</p><div class="metric"><strong>99.9%</strong> sync success</div></article>
+          <article class="case reveal"><span class="case-ic">📊</span><h4>Factory Ops Dashboard</h4><p>Configurable workflows and live dashboards on MSSQL for factory operations.</p><div class="metric"><strong>5+</strong> departments</div></article>
+          <article class="case reveal"><span class="case-ic">📱</span><h4>Zalo Mini App</h4><p>Citizen-facing public-sector screens, with faster data-heavy views via server-side pagination.</p><div class="metric"><strong>−40%</strong> API requests</div></article>
         </div>
-        <div class="projects-grid">
-          <article class="project-card project-card-featured" data-track="node">
-            <div class="project-visual visual-bidflow"><span class="visual-kicker">01 / real-time commerce</span><span class="visual-mark">BF</span><span class="visual-line"></span></div>
-            <div class="project-content"><div class="project-top"><div><p class="track-label track-node">Node.js / TypeScript</p><h3>BidFlow — Real-Time Auction Marketplace</h3></div><a class="project-repo" href="https://github.com/sangvirgo/BidFlow" target="_blank" rel="noreferrer">Repository <span aria-hidden="true">↗</span></a></div><p>Built a real-time auction marketplace supporting seller moderation, concurrent bidding, payments, orders, and administrative workflows. Implemented atomic bid processing, idempotency, Socket.IO synchronization, anti-sniping, background scheduling, and a fully containerized local environment.</p><ul class="project-highlights"><li>Concurrency-safe, idempotent bidding</li><li>MongoDB transactions + Redis/BullMQ scheduling</li><li>Socket.IO synchronization and Docker delivery</li></ul><div class="project-tags"><span>TypeScript</span><span>Node.js</span><span>MongoDB</span><span>Redis</span><span>React</span><span>Docker</span></div></div>
-          </article>
-          <article class="project-card" data-track="java">
-            <div class="project-visual visual-quickfood"><span class="visual-kicker">02 / delivery workflows</span><span class="visual-mark">QF</span><span class="visual-line"></span></div>
-            <div class="project-content"><div class="project-top"><div><p class="track-label track-java">Java / Spring Boot</p><h3>QuickFood — Food Delivery Platform</h3></div><a class="project-repo" href="https://github.com/sangvirgo/quickfood" target="_blank" rel="noreferrer">Repository <span aria-hidden="true">↗</span></a></div><p>Built an end-to-end food delivery platform covering customer ordering, staff fulfilment, and shipper delivery workflows. Developed Spring Boot APIs, role-aware interfaces, containerized delivery, and CI/CD workflows for repeatable deployment.</p><ul class="project-highlights"><li>Customer, staff, and shipper workflows</li><li>PostgreSQL + PostGIS and order concurrency verification</li><li>Docker and GitHub Actions delivery workflow</li></ul><div class="project-tags"><span>Java</span><span>Spring Boot</span><span>PostgreSQL</span><span>PostGIS</span><span>Next.js</span><span>Docker</span></div></div>
-          </article>
-          <article class="project-card" data-track="node">
-            <div class="project-visual visual-secure"><span class="visual-kicker">03 / team project</span><span class="visual-mark">ST</span><span class="visual-line"></span></div>
-            <div class="project-content"><div class="project-top"><div><p class="track-label track-node">Node.js / TypeScript</p><h3>Secure Task and Document Management Platform</h3></div><span class="project-type">Backend Developer · Team Project</span></div><p>Contributed to a ten-service NestJS microservices platform for task assignment and secure document sharing. Implemented authorization, expiring permissions, document-security workflows, event-driven communication, and tamper-evident auditing.</p><ul class="project-highlights"><li>Hierarchical task authorization and RBAC</li><li>RabbitMQ, Redis, PostgreSQL, and Prisma</li><li>MinIO document storage and audit hash chain</li></ul><div class="project-tags"><span>NestJS</span><span>TypeScript</span><span>RabbitMQ</span><span>Redis</span><span>PostgreSQL</span><span>Docker</span></div></div>
-          </article>
-          <article class="project-card" data-track="java">
-            <div class="project-visual visual-smart"><span class="visual-kicker">04 / commerce systems</span><span class="visual-mark">SV</span><span class="visual-line"></span></div>
-            <div class="project-content"><div class="project-top"><div><p class="track-label track-java">Java / Spring Boot</p><h3>SmartVN — E-Commerce Microservices Platform</h3></div><a class="project-repo" href="https://github.com/sangvirgo/microservice-smartVN" target="_blank" rel="noreferrer">Repository <span aria-hidden="true">↗</span></a></div><p>Built a Spring Boot e-commerce microservices platform covering authentication, products, inventory, orders, payments, and administration. Implemented Redis caching, service discovery, resilient service communication, and secure authentication workflows.</p><ul class="project-highlights"><li>Redis cache-aside for product workflows</li><li>OAuth2, JWT, OTP, and VNPay integrations</li><li>OpenFeign, Eureka, Resilience4j, and Docker</li></ul><div class="project-tags"><span>Java</span><span>Spring Boot</span><span>Redis</span><span>MySQL</span><span>OAuth2</span><span>Docker</span></div></div>
-          </article>
-        </div>
-        <p class="filter-empty" hidden>No projects match this track.</p>
       </div>
     </section>
 
-    <section id="skills" class="section section-muted section-anchor">
-      <div class="container narrow"><div class="section-heading"><p class="eyebrow">Skills</p><h2>A focused toolkit<br><em>with evidence behind it.</em></h2></div><div class="skills-grid">
-        <div class="skill-group"><h3>Backend</h3><p>Java · Spring Boot · Node.js · TypeScript · Express.js · NestJS · REST APIs</p></div>
-        <div class="skill-group"><h3>Data</h3><p>PostgreSQL · MongoDB · Redis · SQL</p></div>
-        <div class="skill-group"><h3>Frontend collaboration</h3><p>React · Vue 3</p></div>
-        <div class="skill-group"><h3>Engineering tools</h3><p>Docker · Git · Linux</p></div>
-      </div><div class="workflow-note"><span>Development workflow</span> Uses Claude Code, OpenAI Codex, and ChatGPT to support repository investigation, implementation planning, debugging, code review, and technical documentation.</div></div>
+    <!-- STACK -->
+    <section id="skills" class="section section-anchor">
+      <div class="container">
+        <div class="sec-head reveal"><p class="eyebrow">02 / Toolbox</p><h2>My daily <span class="grad">stack.</span></h2></div>
+        <div class="marquee reveal" aria-label="Technologies">
+          <div class="track">
+            <span>TypeScript</span><span>Node.js</span><span>NestJS</span><span>React</span><span>PostgreSQL</span><span>MSSQL</span><span>MongoDB</span><span>Redis</span><span>Prisma</span><span>Docker</span><span>GitHub Actions</span><span>RabbitMQ</span>
+            <span>TypeScript</span><span>Node.js</span><span>NestJS</span><span>React</span><span>PostgreSQL</span><span>MSSQL</span><span>MongoDB</span><span>Redis</span><span>Prisma</span><span>Docker</span><span>GitHub Actions</span><span>RabbitMQ</span>
+          </div>
+        </div>
+        <div class="principles">
+          <div class="reveal"><i>01</i><h4>Reliable by design</h4><p>Idempotency, transactions, retries and tests — so it keeps working at 2 a.m.</p></div>
+          <div class="reveal"><i>02</i><h4>Secure by default</h4><p>JWT, RBAC and audit trails baked in from day one, not bolted on.</p></div>
+          <div class="reveal"><i>03</i><h4>AI-accelerated</h4><p>Claude Code, Codex, MCP and custom agent skills in my daily workflow.</p></div>
+        </div>
+      </div>
     </section>
 
-    <section id="education" class="section section-anchor"><div class="container narrow"><div class="section-heading"><p class="eyebrow">Education & credentials</p><h2>Grounded in fundamentals,<br><em>still learning in public.</em></h2></div><div class="credentials-grid"><article class="credential-card education-card"><p class="overline">2022 – 2027 · Vietnam</p><h3>Posts and Telecommunications Institute of Technology</h3><p class="credential-degree">Bachelor of Science in Information Technology</p><div class="credential-stats"><div><strong>3.37</strong><span>GPA / 4.00</span></div><div><strong>3</strong><span>Scholarship semesters</span></div></div><p class="credential-note">Scholarships: Semester 1, AY 2024–2025 · Semester 2, AY 2024–2025 · Semester 1, AY 2025–2026</p></article><article class="credential-card toeic-card"><p class="overline">English credential</p><h3>TOEIC Listening & Reading</h3><div class="toeic-score"><strong>810</strong><span>/ 990</span></div><p class="credential-note">ETS</p></article></div></div></section>
+    <!-- JOURNEY -->
+    <section id="experience" class="section section-anchor">
+      <div class="container">
+        <div class="sec-head reveal"><p class="eyebrow">03 / Journey</p><h2>The short <span class="grad">story.</span></h2></div>
+        <div class="journey">
+          <div class="step reveal"><span class="date">2022</span><h4>Started IT at PTIT</h4><p>B.Sc. Information Technology · GPA 3.44 · Academic Excellence Scholarship ×3</p></div>
+          <div class="step reveal"><span class="date">Mar 2026</span><h4>Intern @ MyAloha</h4><p>Shipped 15+ features for public-sector platforms and a Zalo Mini App.</p></div>
+          <div class="step reveal"><span class="date">Aug 2026</span><h4>Software Engineer @ SimhiTech</h4><p>Node.js APIs, Zalo automation, Docker/CI and internal ops tools.</p></div>
+          <div class="step now reveal"><span class="date">Now</span><h4>Open to what's next</h4><p>Looking for a backend role where I can keep building reliable systems. TOEIC 810.</p></div>
+        </div>
+      </div>
+    </section>
 
-    <section id="contact" class="section section-anchor section-contact"><div class="container narrow contact-layout"><div><p class="eyebrow">Contact</p><h2>Let’s talk about<br><em>good engineering work.</em></h2></div><div><p class="contact-copy">I’m open to conversations about backend engineering opportunities, project collaboration, and the systems behind reliable products.</p><a class="contact-email" href="mailto:tansang.dev@gmail.com">tansang.dev@gmail.com <span aria-hidden="true">↗</span></a><div class="contact-links"><a href="tel:0379641599">0379641599 ↗</a><a href="https://github.com/sangvirgo" target="_blank" rel="noreferrer">GitHub ↗</a></div></div></div></section>
+    <!-- CONTACT -->
+    <section id="contact" class="section section-anchor">
+      <div class="container">
+        <div class="cta reveal">
+          <p class="eyebrow">04 / Contact</p>
+          <h2>Let's build something <span class="grad">reliable together.</span></h2>
+          <p class="cta-copy">Open to backend engineering roles and collaborations. The fastest way to reach me is email.</p>
+          <a class="btn btn-primary btn-lg" href="mailto:tansang.dev@gmail.com">tansang.dev@gmail.com <span aria-hidden="true">↗</span></a>
+          <ul class="contact-list">
+            <li><span>Phone</span><a href="tel:+84379641599">+84 379 641 599</a></li>
+            <li><span>LinkedIn</span><a href="https://linkedin.com/in/sangvirgo" target="_blank" rel="noreferrer">linkedin.com/in/sangvirgo</a></li>
+            <li><span>GitHub</span><a href="https://github.com/sangvirgo" target="_blank" rel="noreferrer">github.com/sangvirgo</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer"><div class="container footer-wrap"><span>Nguyen Luu Tan Sang</span><span>© <span id="current-year">2026</span> · Software Engineer</span><a href="mailto:tansang.dev@gmail.com">Email ↗</a></div></footer>
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <span>© <span id="current-year">2026</span> Nguyen Luu Tan Sang</span>
+      <span>Designed &amp; built with care</span>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
 </body>
 </html>
